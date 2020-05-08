@@ -1,0 +1,26 @@
+﻿<Window x:Class="PetDiary.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetDiary"
+        mc:Ignorable="d"
+        Title="Login" 
+         Height="440" Width="320" WindowStyle="None"  AllowsTransparency = "true" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Grid >
+        <Border Background="#FFF" CornerRadius="20" Margin="20,20,20,30">
+            <StackPanel Margin="15,15,15,20">
+                <Label Content="LOGIN" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Width="91" VerticalContentAlignment="Bottom" Height="60"/>
+                <Separator/>
+                <Label Content="FirstName"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
+                <TextBox x:Name="txtfirstname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" Margin="1,0,-0.8,0"  />
+                <Label Content="LastName"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
+                <TextBox x:Name="txtlastname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
+                <Label Content="Password" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
+                <PasswordBox AllowDrop="True" x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" />
+                <Button x:Name="butLogin" Click="butLogin_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Sign In" Margin="60,15,60, 0" Height="28"/>
+                <Button x:Name="butRegister" Click="butRegister_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Log In" Margin="60,16,60,0" Height="28"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

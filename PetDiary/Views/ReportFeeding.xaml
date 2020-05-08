@@ -1,0 +1,85 @@
+﻿<Window x:Class="PetDiary.ReportFeeding"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetDiary"
+        mc:Ignorable="d"
+        Title="Activity" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="620" Background="Transparent" WindowStartupLocation="CenterScreen">
+    <Grid>
+
+        <Border Background="#F9FADC" CornerRadius="20" Margin="20,20,20,30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="1.5*"/>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.5*"/>
+                    <RowDefinition Height="0.3*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Report Note about feeding" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
+
+                <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                <Border Grid.Row="3" Background="#DAE2F3" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <!--this.Id = 0;
+            this.DryFood = false;
+            this.Meat = false;
+            this.Medicines = false;
+            this.Other = false;
+            this.PetId = 0;-->
+                        <Label Content="Date" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
+                        <DatePicker Grid.Column="2" Grid.Row="6" Height="auto">
+                            <DatePicker.Text>
+                                <Binding Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </DatePicker.Text>
+                        </DatePicker>
+                        <Label HorizontalContentAlignment="Left" Content="WetFood" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <CheckBox x:Name="wetcheck" Grid.Row="1" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.WetFood}" />
+                        <Label HorizontalContentAlignment="Left" Content="DryFood" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <CheckBox x:Name="drycheck" Grid.Row="2" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.DryFood}" />
+                        <Label HorizontalContentAlignment="Left" Content="Meat" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <CheckBox x:Name="meatcheck" Grid.Row="3" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Meat}" />
+                        <Label HorizontalContentAlignment="Left" Content="Medicines" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <CheckBox x:Name="medcheck" Grid.Row="4" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Medicines}" />
+                        <Label HorizontalContentAlignment="Left" Content="Other" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <CheckBox x:Name="othercheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Other}" />
+                    </Grid>
+                </Border>
+                <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save" Height="28" />
+                <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Height="28" Click="butcancelpet_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
