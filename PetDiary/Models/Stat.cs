@@ -6,10 +6,24 @@ using System.Threading.Tasks;
 
 namespace PetDiary
 {
-    class Stat
+    public class Stat
     {
         public int PetId { get; set; }
-        public int Number { get; set; }
+        public DateTime Date { get; set; }
         public int Weight { get; set; }
+
+        public Stat()
+        {
+            this.PetId = 0;
+            this.Date = DateTime.Today;
+            this.Weight = 0;
+        }
+
+        public Stat(DateTime Date, int Weight, int PetId)
+        {
+            this.Date = Date;
+            this.Weight = Weight;
+            this.PetId = PetId;
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace PetDiary.ViewModels
         public AddPetViewModel AddPetViewModel { get; set; }
         public ReportActivityViewModel ReportActivityViewModel { get; set; }
         public ReportFeedingViewModel ReportFeedingViewModel { get; set; }
+        public RegistrationViewModel RegistrationViewModel { get; set; }
         public static ApplicationContext Get()
         {
             return new ApplicationContext
@@ -25,7 +26,8 @@ namespace PetDiary.ViewModels
                 UserViewModel = ViewModel.UserViewModel,
                 AddPetViewModel = ViewModel.AddPetViewModel,
                 ReportActivityViewModel = ViewModel.ReportActivityViewModel,
-                ReportFeedingViewModel = ViewModel.ReportFeedingViewModel
+                ReportFeedingViewModel = ViewModel.ReportFeedingViewModel,
+                RegistrationViewModel = ViewModel.RegistrationViewModel
             };
         }
     }
@@ -39,6 +41,8 @@ namespace PetDiary.ViewModels
         private static AddPetViewModel _addPetViewModel;
         private static ReportActivityViewModel _addActivityViewModel;
         private static ReportFeedingViewModel _addFeedingViewModel;
+        private static RegistrationViewModel _registrationViewModel;
+        private static ReportStatViewModel _reportStatViewModel;
         public static UserViewModel UserViewModel {
             get {
                 return _userViewModel ?? (_userViewModel = new UserViewModel());
@@ -64,6 +68,11 @@ namespace PetDiary.ViewModels
                 return _addPetViewModel ?? (_addPetViewModel = new AddPetViewModel());
             }
         }
+        public static ReportStatViewModel ReportStatViewModel {
+            get {
+                return _reportStatViewModel ?? (_reportStatViewModel = new ReportStatViewModel());
+            }
+        }
         public static ReportActivityViewModel ReportActivityViewModel {
             get {
                 return _addActivityViewModel ?? (_addActivityViewModel = new ReportActivityViewModel());
@@ -72,6 +81,11 @@ namespace PetDiary.ViewModels
         public static ReportFeedingViewModel ReportFeedingViewModel {
             get {
                 return _addFeedingViewModel ?? (_addFeedingViewModel = new ReportFeedingViewModel());
+            }
+        }
+        public static RegistrationViewModel RegistrationViewModel {
+            get {
+                return _registrationViewModel ?? (_registrationViewModel = new RegistrationViewModel());
             }
         }
     }

@@ -26,18 +26,14 @@ namespace PetDiary
     {
         public MainWindow()
         {
-            
-
-            
-          
             InitializeComponent();
             RefreshNotes();
-            DataContext = ApplicationContext.Get();
 
+            DataContext = ApplicationContext.Get();
         }
         private void RefreshNotes()
         {
-            if (ViewModel.PetViewModel.SelectedPet?.Id == null)
+            if (ViewModel.PetViewModel.SelectedPet==null)
             {
                 return;
             }

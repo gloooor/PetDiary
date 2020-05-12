@@ -34,3 +34,6 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesign
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignThemes.Wpf.xml
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignColors.pdb
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csproj.CopyComplete
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\WpfAnimatedGif.dll
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\WpfAnimatedGif.pdb
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\WpfAnimatedGif.xml

@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PetDiary"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:toolkit="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
         Title="MainWindow" Background="Ivory" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
@@ -66,12 +67,18 @@
             <Button Grid.Column="8" Style="{StaticResource MenuButtons}" Click="clo"/>
         </Grid>
 
-        <StackPanel Grid.Column="0"  Grid.Row="1">
-            <StackPanel.Background >
+        <Grid Grid.Column="0"  Grid.Row="1">
+            <Grid.Background >
                 <SolidColorBrush Color="#D59A97"/>
-            </StackPanel.Background>
-            <Label HorizontalAlignment="Center" Height="50" VerticalAlignment="Center"   FontSize="25">PETS</Label>
-            <ListView x:Name="petsList" SelectedItem="{Binding PetViewModel.SelectedPet, Mode=TwoWay}"
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center"   FontSize="25">PETS</Label>
+            <ListView Grid.Row="1" x:Name="petsList" SelectedItem="{Binding PetViewModel.SelectedPet, Mode=TwoWay}"
       ItemsSource="{Binding PetViewModel.Pets}" SelectionChanged="petsList_SelectionChanged">
                 <ListView.ItemContainerStyle>
 
@@ -90,11 +97,12 @@
                         </StackPanel>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
-            <Button Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
-                
+            </ListView>            
+            <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/6.gif" Height="100"/>
+            <Button Grid.Row="3" Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
             </Button>
-        </StackPanel>
+
+        </Grid>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -204,7 +212,7 @@
                             </TextBox>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
                                 <Label Content="Time" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                                <TextBox Margin="46,0,0,0.2" Background="#F0F0F0" Width="75" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
+                                <TextBox Margin="40,0,0,0" Background="#F0F0F0" Width="70" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
                                     <TextBox.Text>
                                         <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
@@ -214,7 +222,7 @@
                                     </TextBox.Text>
                                 </TextBox>
                                 <Label Content=":" HorizontalContentAlignment="Right"/>
-                                <TextBox x:Name="minutes" Width="80" Background="#F0F0F0"  Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
+                                <TextBox x:Name="minutes" Width="66" Background="#F0F0F0"  Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
                                     <TextBox.Text>
                                         <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>

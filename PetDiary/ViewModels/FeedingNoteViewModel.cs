@@ -40,8 +40,11 @@ namespace PetDiary.ViewModels
                   (_addFeedingNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportFeedingViewModel.FeedingNote;
-                      FeedingNotes.Add(note);
                       FeedingNoteDB.AddNote(note.Date, note.WetFood, note.DryFood, note.Meat, note.Medicines, note.Other, ViewModel.PetViewModel.SelectedPet.Id);
+                      if (ViewModel.PetViewModel.SelectedPet != null)
+                      {
+                          GetPetFeedingNotes(ViewModel.PetViewModel.SelectedPet.Id);
+                      }
                   }));
             }
         }
@@ -52,8 +55,10 @@ namespace PetDiary.ViewModels
                 return _deleteFeedingNoteCommand ??
                   (_deleteFeedingNoteCommand = new RelayCommand(obj =>
                   {
-                      FeedingNotes.Remove(SelectedFeedingNote);
+
                       FeedingNoteDB.DeleteNoteById(SelectedFeedingNote.Id);
+                      FeedingNotes.Remove(SelectedFeedingNote);
+                      SelectedFeedingNote = FeedingNotes.FirstOrDefault();
                   }));
             }
         }

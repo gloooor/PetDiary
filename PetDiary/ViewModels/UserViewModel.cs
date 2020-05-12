@@ -1,4 +1,6 @@
-﻿using PetDiary.Models;
+﻿using PetDiary.Command;
+using PetDiary.DataBase;
+using PetDiary.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -45,7 +47,18 @@ namespace PetDiary.ViewModels
             }
         }
 
-
+        private RelayCommand _addUserCommand;
+        public RelayCommand AddUserCommand {
+            get {
+                return _addUserCommand ??
+                  (_addUserCommand = new RelayCommand(obj =>
+                  {
+                      var user = ViewModel.RegistrationViewModel.User;
+                      UserList.Add(user);
+                      UserDB.AddUser(user.FirstName, user.LastName, user.Age, user.Password);
+                  }));
+            }
+        }
         public UserViewModel()
         {
             UserList = new ObservableCollection<User>();

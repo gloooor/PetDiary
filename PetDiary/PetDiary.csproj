@@ -72,6 +72,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WpfAnimatedGif, Version=2.0.0.0, Culture=neutral, PublicKeyToken=9e7cd3b544a090dc, processorArchitecture=MSIL">
+      <HintPath>..\packages\WpfAnimatedGif.2.0.0\lib\net40\WpfAnimatedGif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -81,6 +84,7 @@
     <Compile Include="DataBase\ActivityNoteDB.cs" />
     <Compile Include="DataBase\FeedingNoteDB.cs" />
     <Compile Include="DataBase\PetDB.cs" />
+    <Compile Include="DataBase\StatDB.cs" />
     <Compile Include="DataBase\UserDB.cs" />
     <Compile Include="Models\ActivityNote.cs" />
     <Compile Include="Command\RelayCommand.cs" />
@@ -91,8 +95,11 @@
     <Compile Include="ViewModels\AddPetViewModel.cs" />
     <Compile Include="ViewModels\FeedingNoteViewModel.cs" />
     <Compile Include="ViewModels\PetViewModel.cs" />
+    <Compile Include="ViewModels\RegistrationViewModel.cs" />
     <Compile Include="ViewModels\ReportActivityViewModel.cs" />
     <Compile Include="ViewModels\ReportFeedingViewModel.cs" />
+    <Compile Include="ViewModels\ReportStatViewModel.cs" />
+    <Compile Include="ViewModels\StatViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
     <Compile Include="Views\Login.xaml.cs">

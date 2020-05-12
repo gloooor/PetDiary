@@ -44,8 +44,11 @@ namespace PetDiary.ViewModels
                   (_addActivityNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportActivityViewModel.Note;
-                      ActivityNotes.Add(note);
                       ActivityNoteDB.AddNote(note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating, ViewModel.PetViewModel.SelectedPet.Id);
+                      if (ViewModel.PetViewModel.SelectedPet != null)
+                      {
+                          GetPetActivityNotes(ViewModel.PetViewModel.SelectedPet.Id);
+                      }
                   }));
             }
         }
@@ -56,8 +59,9 @@ namespace PetDiary.ViewModels
                 return _deleteActivityNoteCommand ??
                   (_deleteActivityNoteCommand = new RelayCommand(obj =>
                   {
-                      ActivityNotes.Remove(SelectedActivityNote);
                       ActivityNoteDB.DeleteNoteById(SelectedActivityNote.Id);
+                      ActivityNotes.Remove(SelectedActivityNote);
+                      SelectedActivityNote = ActivityNotes.FirstOrDefault();
                   }));
             }
         }

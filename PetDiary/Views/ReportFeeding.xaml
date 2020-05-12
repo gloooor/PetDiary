@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="Activity" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="620" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -69,6 +70,8 @@
                         <CheckBox x:Name="othercheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Other}" />
                     </Grid>
                 </Border>
+                <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/2.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
+
                 <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" Click="butcancelpet_Click" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
                 <Button Grid.Column="2" Grid.Row="6" Margin="20,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click"/>
             </Grid>

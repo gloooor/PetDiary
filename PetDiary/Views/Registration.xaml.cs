@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetDiary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -21,54 +22,38 @@ namespace PetDiary
     /// </summary>
     public partial class Registration : Window
     {
+
         public Registration()
         {
             InitializeComponent();
+
+            ViewModel.RegistrationViewModel.InitUser(true);
+            DataContext = ApplicationContext.Get();
+            ViewModel.RegistrationViewModel.User.Password = txtpassword.Password;
+        }
+
+        private void btnRegisterCancel_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new Login();
+            window.Show();
+            this.Close();
         }
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            SqlConnection sqlCon = DB.ConnectDB();
-            try
+            if (!ViewModel.RegistrationViewModel.IsValid)
             {
-                if (sqlCon.State == System.Data.ConnectionState.Closed) sqlCon.Open();
-                if (txtage.Text != "" && txtlastname.Text != "" && txtfirstname.Text != "" && txtpassword.Password != "")
-                {
-                    String query = "insert into dbUser (FirstName, LastName, Password, Age) values (@FirstName, @LastName, @Password, @Age)";
-                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-                    sqlCmd.CommandType = CommandType.Text;
-                    sqlCmd.Parameters.AddWithValue("@FirstName", txtfirstname.Text);
-                    sqlCmd.Parameters.AddWithValue("@LastName", txtlastname.Text);
-                    sqlCmd.Parameters.AddWithValue("@Password", Convert.ToString(DB.Hash(txtpassword.Password)));
-                    sqlCmd.Parameters.AddWithValue("@Age", txtage.Text);
-                    sqlCmd.ExecuteNonQuery();
-                    MainWindow Menu = new MainWindow();
-                    Menu.Show();
-                    this.Close();
-                    //User user = new User();
-                    //int id = user.Get_id(txtfirstname.Text, txtlastname.Text);
-                    //user = new User(txtfirstname.Text, txtlastname.Text, Convert.ToInt32(txtage.Text), id);
+                MessageBox.Show("Sanya privet");
+                return;
+            }
+            var window = new Login();
+            window.Show();
+            this.Close();
+        }
 
-                }
-                else
-                {
-                    MessageBox.Show("Fill all fields.");
-                    Registration Reg = new Registration();
-                    Reg.Show();
-                    this.Close();
-                }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
-                sqlCon.Close();
-            }
-           
-       
+        private void txtpassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RegistrationViewModel.Password = txtpassword.Password;
         }
     }
 }

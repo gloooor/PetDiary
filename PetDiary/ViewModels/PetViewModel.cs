@@ -30,7 +30,7 @@ namespace PetDiary.ViewModels
         private ObservableCollection<Pet> _pets;
         private readonly PetDB _petDB = new PetDB();
         Pet _selectedPet;
-       
+
         public Pet SelectedPet {
             get {
                 return _selectedPet;
@@ -53,7 +53,7 @@ namespace PetDiary.ViewModels
             Pets = new ObservableCollection<Pet>();
         }
 
-      
+
 
 
         private RelayCommand _addPetCommand;
@@ -65,6 +65,10 @@ namespace PetDiary.ViewModels
                       var pet = ViewModel.AddPetViewModel.Pet;
                       Pets.Add(pet);
                       PetDB.AddPet(pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type, ViewModel.UserViewModel.User.Id);
+                      if (ViewModel.UserViewModel.User != null)
+                      {
+                          GetUserPets(ViewModel.UserViewModel.User.Id);
+                      }
                   }));
             }
         }
@@ -75,21 +79,20 @@ namespace PetDiary.ViewModels
                 return _deletePetCommand ??
                   (_deletePetCommand = new RelayCommand(obj =>
                   {
-                      Pets.Remove(SelectedPet);
+
                       PetDB.DeletePetById(SelectedPet.Id);
+                      Pets.Remove(SelectedPet);
+                      SelectedPet = Pets.FirstOrDefault();
                   }));
             }
         }
-       
+
         public void GetUserPets(int userId)
         {
             Pets.Clear();
             var items = PetDB.GetPetsByUserId(userId);
             items.ForEach(Pets.Add);
-            if (Pets.Any())
-            {
-                SelectedPet = Pets.FirstOrDefault();
-            }
+            SelectedPet = Pets.FirstOrDefault();
         }
     }
 }

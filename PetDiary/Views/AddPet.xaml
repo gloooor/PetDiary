@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
+        xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
         Title="AddPet" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="620" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -117,6 +118,8 @@
                         </DatePicker>
                     </Grid>
                 </Border>
+                <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/1.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
+
                 <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding PetViewModel.AddPetCommand}" Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Click="butcancelpet_Click" Content="Save"/>
                 <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet"  Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click"/>
             </Grid>

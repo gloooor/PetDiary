@@ -113,7 +113,7 @@ namespace PetDiary.ViewModels
             set {
                 InitPet();
                 if (value == null)
-                    throw new ArgumentException("Выберите имя");
+                    throw new ArgumentException("Выберите дату");
                 else
                 {
                     Pet.DateOfBirth = value;
