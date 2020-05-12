@@ -27,3 +27,10 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\Statisti
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csprojAssemblyReference.cache
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\ReporlActivity.g.cs
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\ReporlActivity.baml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\App.baml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignColors.dll
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignColors.pdb
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csproj.CopyComplete

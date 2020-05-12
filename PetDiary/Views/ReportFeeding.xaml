@@ -46,19 +46,11 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <!--this.Id = 0;
-            this.DryFood = false;
-            this.Meat = false;
-            this.Medicines = false;
-            this.Other = false;
-            this.PetId = 0;-->
                         <Label Content="Date" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
                         <DatePicker Grid.Column="2" Grid.Row="6" Height="auto">
                             <DatePicker.Text>
-                                <Binding Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="ReportFeedingViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule/>
                                     </Binding.ValidationRules>
@@ -77,8 +69,8 @@
                         <CheckBox x:Name="othercheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Other}" />
                     </Grid>
                 </Border>
-                <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save" Height="28" />
-                <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Height="28" Click="butcancelpet_Click"/>
+                <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" Click="butcancelpet_Click" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Grid.Row="6" Margin="20,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click"/>
             </Grid>
         </Border>
     </Grid>

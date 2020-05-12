@@ -12,27 +12,26 @@
                 <Label Content="Registration" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  VerticalContentAlignment="Bottom" Height="60"/>
                 <Separator/>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Username"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
-                    <TextBox SpellCheck.IsEnabled="True" Width="130" AcceptsReturn="True" AllowDrop="True" x:Name="txtfirstname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
+                    <Label Content="FirstName"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
+                    <TextBox Width="130" x:Name="txtfirstname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="Lastname"   Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                    <TextBox Width="130" SpellCheck.IsEnabled="True" AcceptsReturn="True" AllowDrop="True" x:Name="txtlastname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
+                    <Label Content="LastName"   Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
+                    <TextBox Width="130" x:Name="txtlastname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
                 </StackPanel> 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Password"  Width="70" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
-                    <PasswordBox  Width="130" AllowDrop="True" x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" />
+                    <PasswordBox  Width="130" x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Mail"  Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                    <TextBox  Width="130" SpellCheck.IsEnabled="True" AcceptsReturn="True" AllowDrop="True" x:Name="txtage" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
+                    <TextBox  Width="130" AllowDrop="True" x:Name="txtage" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Age"  Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
                     <TextBox   Width="130" x:Name="txtmail" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3"  />
                 </StackPanel>
                 <Button x:Name="btnRegister" Click="btnRegister_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Margin="60,30,60,0" Height="28"/>
-
             </StackPanel>
         </Border>
 

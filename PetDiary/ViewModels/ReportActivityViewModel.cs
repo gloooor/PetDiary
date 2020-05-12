@@ -32,7 +32,7 @@ namespace PetDiary.ViewModels
             }
         }
         public string Location {
-            get => this.Note.Date;
+            get => this.Note.Location;
             set {
                 InitNote();
                 if (value == null)

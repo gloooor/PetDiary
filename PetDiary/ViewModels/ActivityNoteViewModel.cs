@@ -49,6 +49,32 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
+
+        private RelayCommand _deleteActivityNoteCommand;
+        public RelayCommand DeleteActivityNoteCommand {
+            get {
+                return _deleteActivityNoteCommand ??
+                  (_deleteActivityNoteCommand = new RelayCommand(obj =>
+                  {
+                      ActivityNotes.Remove(SelectedActivityNote);
+                      ActivityNoteDB.DeleteNoteById(SelectedActivityNote.Id);
+                  }));
+            }
+        }
+
+
+        ActivityNote _selectedActivityNote;
+
+        public ActivityNote SelectedActivityNote {
+            get {
+                return _selectedActivityNote;
+            }
+
+            set {
+                _selectedActivityNote = value;
+                OnPropertyChanged("SelectedActivityNote");
+            }
+        }
         public void GetPetActivityNotes(int petId)
         {
             ActivityNotes.Clear();

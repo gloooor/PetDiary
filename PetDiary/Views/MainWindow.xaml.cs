@@ -26,11 +26,12 @@ namespace PetDiary
     {
         public MainWindow()
         {
+            
+
+            
+          
             InitializeComponent();
-
-            ViewModel.PetViewModel.GetUserPets(ViewModel.UserViewModel.User.Id);
             RefreshNotes();
-
             DataContext = ApplicationContext.Get();
 
         }
@@ -77,6 +78,37 @@ namespace PetDiary
             }
             ViewModel.PetViewModel.SelectedPet = ViewModel.PetViewModel.Pets[index];
             RefreshNotes();
+        }
+
+        private void ActList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!ViewModel.ActivityNoteViewModel.ActivityNotes.Any())
+            {
+                ViewModel.ActivityNoteViewModel.SelectedActivityNote = null;
+                return;
+            }
+            var index = actList.SelectedIndex;
+            if (index >= ViewModel.ActivityNoteViewModel.ActivityNotes.Count || index < 0)
+            {
+                index = 0;
+            }
+            ViewModel.ActivityNoteViewModel.SelectedActivityNote = ViewModel.ActivityNoteViewModel.ActivityNotes[index];
+           // RefreshNotes();
+        }
+        private void FeedList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!ViewModel.FeedingNoteViewModel.FeedingNotes.Any())
+            {
+                ViewModel.FeedingNoteViewModel.SelectedFeedingNote = null;
+                return;
+            }
+            var index = feedList.SelectedIndex;
+            if (index >= ViewModel.FeedingNoteViewModel.FeedingNotes.Count || index < 0)
+            {
+                index = 0;
+            }
+            ViewModel.FeedingNoteViewModel.SelectedFeedingNote = ViewModel.FeedingNoteViewModel.FeedingNotes[index];
+            // RefreshNotes();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

@@ -22,6 +22,34 @@ namespace PetDiary.ViewModels
         }
 
         private User _user;
+        public ObservableCollection<User> UserList {
+            get => _userList;
+            set {
+                _userList = value;
+                OnPropertyChanged(nameof(UserList));
+            }
+        }
+
+        private ObservableCollection<User> _userList;
+
+        User _selectedUser;
+
+        public User SelectedUser {
+            get {
+                return _selectedUser;
+            }
+
+            set {
+                _selectedUser = value;
+                OnPropertyChanged("SelectedUser");
+            }
+        }
+
+
+        public UserViewModel()
+        {
+            UserList = new ObservableCollection<User>();
+        }
 
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")

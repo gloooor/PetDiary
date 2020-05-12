@@ -45,6 +45,32 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
+
+        private RelayCommand _deleteFeedingNoteCommand;
+        public RelayCommand DeleteFeedingNoteCommand {
+            get {
+                return _deleteFeedingNoteCommand ??
+                  (_deleteFeedingNoteCommand = new RelayCommand(obj =>
+                  {
+                      FeedingNotes.Remove(SelectedFeedingNote);
+                      FeedingNoteDB.DeleteNoteById(SelectedFeedingNote.Id);
+                  }));
+            }
+        }
+
+
+        FeedingNote _selectedFeedingNote;
+
+        public FeedingNote SelectedFeedingNote {
+            get {
+                return _selectedFeedingNote;
+            }
+
+            set {
+                _selectedFeedingNote = value;
+                OnPropertyChanged("SelectedFeedingNote");
+            }
+        }
         public FeedingNoteViewModel()
         {
             FeedingNotes = new ObservableCollection<FeedingNote>();

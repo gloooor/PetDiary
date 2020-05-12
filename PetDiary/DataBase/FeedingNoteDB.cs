@@ -37,6 +37,28 @@ namespace PetDiary.DataBase
                 DB.Close_DB_Connection();
             }
         }
+
+        static public void DeleteNoteById(int id)
+        {
+            try
+            {
+                SqlConnection cn_connection = DB.ConnectDB();
+                var query = "delete from [dbFeedingNote] where Id=@id;";
+
+                SqlCommand cmd_Command = new SqlCommand(query, cn_connection);
+                cmd_Command.Parameters.AddWithValue("@id", id);
+                cmd_Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DB.Close_DB_Connection();
+            }
+        }
+
         public List<FeedingNote> GetNotesByPetId(int Id)
         {
 

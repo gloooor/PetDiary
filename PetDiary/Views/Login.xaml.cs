@@ -48,6 +48,7 @@ namespace PetDiary
                 return; 
             }
             UserViewModel.User = user;
+            ViewModel.PetViewModel.GetUserPets(ViewModel.UserViewModel.User.Id);
             var window= new MainWindow();
             window.Show();
             this.Close();

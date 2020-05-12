@@ -3,15 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PetDiary"
         xmlns:toolkit="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
-        Title="MainWindow" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Background="Ivory" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MenuButtons">
             <Setter Property="Background" Value="#FFC7DD"/>
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Height" Value="Auto"/>
+        </Style>
+        <Style TargetType="Button" x:Key="DeleteButtons">
+            <Setter Property="Width" Value="Auto"/>
             <Setter Property="Height" Value="Auto"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="DogList">
@@ -50,7 +55,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-           <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
+            <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
             <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Click="Button_Click_1" >Add Activity Note</Button>
             <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" >Add Feeding Note</Button>
             <Button Grid.Column="3" Style="{StaticResource MenuButtons}">Stat</Button>
@@ -65,9 +70,9 @@
             <StackPanel.Background >
                 <SolidColorBrush Color="#D59A97"/>
             </StackPanel.Background>
-            <Label HorizontalAlignment="Center" Height="50" VerticalAlignment="Center"   FontSize="25" FontStyle="Italic">PETS</Label>
+            <Label HorizontalAlignment="Center" Height="50" VerticalAlignment="Center"   FontSize="25">PETS</Label>
             <ListView x:Name="petsList" SelectedItem="{Binding PetViewModel.SelectedPet, Mode=TwoWay}"
-      ItemsSource="{Binding PetViewModel.Pets}" Margin="-2,0,2.4,0" SelectionChanged="petsList_SelectionChanged">
+      ItemsSource="{Binding PetViewModel.Pets}" SelectionChanged="petsList_SelectionChanged">
                 <ListView.ItemContainerStyle>
 
                     <Style>
@@ -86,12 +91,16 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
+                
+            </Button>
         </StackPanel>
-        <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <ScrollViewer.Background>
-                <SolidColorBrush Color="#FCEFDF"/>
-            </ScrollViewer.Background>
-            <Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="170"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
@@ -99,14 +108,13 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="5*"/>
-                    <RowDefinition Height="2*"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Notes about activity" Grid.Row="0" Grid.Column="0" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
+                <Label Content="Notes about activity" Grid.Row="0" Grid.Column="0" FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
 
-                <ListView x:Name="activityList" Grid.Column="0" Grid.Row="1"
-      ItemsSource="{Binding ActivityNoteViewModel.ActivityNotes, Mode=TwoWay}"  BorderBrush="Transparent" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListView x:Name="actList" Grid.Column="0" Grid.Row="1"
+      ItemsSource="{Binding ActivityNoteViewModel.ActivityNotes, Mode=TwoWay}" SelectedItem="{Binding ActivityNoteViewModel.SelectedActivityNote, Mode=TwoWay}" SelectionChanged="ActList_SelectionChanged" BorderBrush="Transparent" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
                         <Style>
                             <Setter Property="ListBoxItem.Background" Value="#C4E5D7"/>
@@ -128,80 +136,11 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-                <GroupBox x:Name="groupBox" Grid.Row="2"  Header="Room Type" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="Black" BorderBrush="Black" Height="auto" Width="auto" >
-                    <Grid >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="0.5*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="0.2*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Label Content="Date" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <DatePicker Grid.Column="2" Grid.Row="5" Height="auto">
-                            <DatePicker.Text>
-                                <Binding Path="PetViewModel.Selected.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </DatePicker.Text>
-                        </DatePicker>
-                        <Label HorizontalContentAlignment="Left" Content="Location" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
-                        <TextBox x:Name="txtloc"  Text="{Binding PetViewModel.SelectedPet.Name}" Grid.Row="1" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-
-                        </TextBox>
-                        <Label Content="Hours" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="hours" Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                            <TextBox.Text>
-                                <Binding Path="PetViewModel.SelectedPet.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Minutes" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="minutes" Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                            <TextBox.Text>
-                                <Binding Path="PetViewModel.SelectedPet.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Comment" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="txtcomment" Grid.Row="4"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                            <TextBox.Text>
-                                <Binding Path="PetViewModel.SelectedPet.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Rating" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <Slider Grid.Row="6" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding PetViewModel.SelectedPet.Rating, Mode=TwoWay}"></Slider>
-                        <Button  Grid.Column="2" Grid.Row="7" x:Name="butsavepet" Command="{Binding PetViewModel.DeletePetCommand}"/>
-                  
-                </Grid> 
-                </GroupBox>
                 <GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-                <Label Content="Notes about feeding" Grid.Row="0" Grid.Column="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
-                <ListView x:Name="feedingList" Grid.Column="2" Grid.Row="1"
-      ItemsSource="{Binding FeedingNoteViewModel.FeedingNotes}" BorderBrush="Transparent" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <Label Content="Notes about feeding" Grid.Row="0" Grid.Column="2" FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"/>
+                <ListView x:Name="feedList" Grid.Column="2" Grid.Row="1"
+      ItemsSource="{Binding FeedingNoteViewModel.FeedingNotes}" SelectedItem="{Binding FeedingNoteViewModel.SelectedFeedingNote, Mode=TwoWay}" BorderBrush="Transparent" SelectionChanged="FeedList_SelectionChanged" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
                         <Style>
                             <Setter Property="ListBoxItem.Background" Value="#FFCAD8"/>
@@ -223,8 +162,163 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-             
             </Grid>
-        </ScrollViewer>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <GroupBox x:Name="groupBox" Header="{Binding PetViewModel.SelectedPet.Name}" Foreground="Black" BorderBrush="Black" Height="auto" Width="auto" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Date" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                            <DatePicker Grid.Column="2" Grid.Row="4" Height="auto">
+                                <DatePicker.Text>
+                                    <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.Text>
+                            </DatePicker>
+                            <Label HorizontalContentAlignment="Left" Content="Location" Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Bottom"/>
+                            <TextBox x:Name="txtloc"  Text="{Binding ActivityNoteViewModel.SelectedActivityNote.Location, Mode=TwoWay}" Grid.Row="0" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
+                            </TextBox>
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                                <Label Content="Time" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                                <TextBox Margin="46,0,0,0.2" Background="#F0F0F0" Width="75" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
+                                    <TextBox.Text>
+                                        <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <DataErrorValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                                <Label Content=":" HorizontalContentAlignment="Right"/>
+                                <TextBox x:Name="minutes" Width="80" Background="#F0F0F0"  Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
+                                    <TextBox.Text>
+                                        <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <DataErrorValidationRule/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </TextBox.Text>
+                                </TextBox>
+                            </StackPanel>
+                            <Label Content="Comment" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                            <TextBox Grid.Row="2"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
+                                <TextBox.Text>
+                                    <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Label Content="Rating" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                            <Slider Grid.Row="3" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ActivityNoteViewModel.SelectedActivityNote.Rating, Mode=TwoWay}"></Slider>
+
+                        </Grid>
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.DeleteActivityNoteCommand}" Grid.Column="2">
+                            <TextBlock Text="DELETE" >
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Button>
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.ChangeActivityNoteCommand}" Grid.Column="1">
+                            <TextBlock Text="CHANGE" >
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Button>
+
+                    </Grid>
+                </GroupBox>
+                <GroupBox x:Name="groupBox2" Header="    " Grid.Column="1" Foreground="Black" BorderBrush="Black" Height="auto" Width="auto" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"/>
+                                <ColumnDefinition Width="0.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="0.2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Date" Grid.Row="3" Grid.Column="1"  FontSize="10" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                            <DatePicker Grid.Column="2" Grid.Row="3" Height="auto">
+                                <DatePicker.Text>
+                                    <Binding Path="FeedingNoteViewModel.SelectedFeedingNote.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <DataErrorValidationRule/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DatePicker.Text>
+                            </DatePicker>
+                            <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label HorizontalContentAlignment="Left"  FontSize="10" Content="WetFood"  />
+                                <CheckBox x:Name="wetcheck"  IsChecked="{Binding FeedingNoteViewModel.SelectedFeedingNote.WetFood}" />
+                                <Label HorizontalContentAlignment="Left" Margin="70,0,0,0" FontSize="10" Content="DryFood" />
+                                <CheckBox x:Name="drycheck" Margin="7,0,0,0" IsChecked="{Binding FeedingNoteViewModel.SelectedFeedingNote.DryFood}" />
+                            </StackPanel>
+                            <StackPanel  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label HorizontalContentAlignment="Left"  FontSize="10" Content="Meat"/>
+                                <CheckBox x:Name="meatcheck" Margin="18,0,0,0"  IsChecked="{Binding FeedingNoteViewModel.SelectedFeedingNote.Meat}" />
+                                <Label HorizontalContentAlignment="Left" Margin="70,0,0,0" FontSize="10" Content="Medicines"/>
+                                <CheckBox x:Name="medcheck"  IsChecked="{Binding FeedingNoteViewModel.SelectedFeedingNote.Medicines}" />
+                            </StackPanel>
+                            <StackPanel  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal">
+                                <Label HorizontalContentAlignment="Left" FontSize="10" Content="Other"/>
+                                <CheckBox x:Name="othercheck"  Margin="15,0,0,0" IsChecked="{Binding FeedingNoteViewModel.SelectedFeedingNote.Other}" />
+                            </StackPanel>
+                        </Grid>
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding FeedingNoteViewModel.DeleteFeedingNoteCommand}" Grid.Column="2">
+                            <TextBlock Text="DELETE" >
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Button>
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding FeedingNoteViewModel.ChangeFeedingNoteCommand}" Grid.Column="1">
+                            <TextBlock Text="CHANGE" >
+                                <TextBlock.LayoutTransform>
+                                    <RotateTransform Angle="90" />
+                                </TextBlock.LayoutTransform>
+                            </TextBlock>
+                        </Button>
+                    </Grid>
+                </GroupBox>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

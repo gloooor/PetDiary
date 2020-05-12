@@ -51,7 +51,6 @@ namespace PetDiary.ViewModels
         public PetViewModel()
         {
             Pets = new ObservableCollection<Pet>();
-
         }
 
       

@@ -49,7 +49,48 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
+                      
+                        <Label Content="Hours" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txthours" Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3" >
+                            <TextBox.Text>
+                                <Binding Path="ReportActivityViewModel.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="Minutes" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtminutes" Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3" >
+                            <TextBox.Text>
+                                <Binding Path="ReportActivityViewModel.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="Comment" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtcomment" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3">
+                            <TextBox.Text>
+                                <Binding Path="ReportActivityViewModel.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="Location" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtcoment" Grid.Row="1" FontSize="14"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
+                            <TextBox.Text>
+                                <Binding Path="ReportActivityViewModel.Location" Mode="TwoWay" ValidatesOnExceptions="True"  UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Label Content="Date" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <DatePicker Grid.Column="2" Grid.Row="6" Height="auto">
                             <DatePicker.Text>
                                 <Binding Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -59,52 +100,12 @@
                                 </Binding>
                             </DatePicker.Text>
                         </DatePicker>
-                        <Label HorizontalContentAlignment="Left" Content="Location" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
-                        <TextBox x:Name="txtlocation"  Grid.Row="1" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                            <TextBox.Text>
-                                <Binding Path="ReportActivityViewModel.Location" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Hours" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="txthours" Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                            <TextBox.Text>
-                                <Binding Path="ReportActivityViewModel.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Minutes" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="txtminutes" Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                            <TextBox.Text>
-                                <Binding Path="ReportActivityViewModel.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Comment" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
-                        <TextBox x:Name="txtcomment" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                            <TextBox.Text>
-                                <Binding Path="ReportActivityViewModel.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
-                        </TextBox>
-                        <Label Content="Rating" Grid.Row="8" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
+                        <Label Content="Rating" Grid.Row="8" Grid.Column="1"  HorizontalContentAlignment="Left"/>
                         <Slider Grid.Row="8" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ReportActivityViewModel.Rating, Mode=TwoWay}"></Slider>
                     </Grid>
                 </Border>
-                <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Margin="20.6,10,43,10.8" Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save" Height="28" Grid.ColumnSpan="2"/>
-                <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet"  Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Height="28" Click="butcancelpet_Click"/>
+                <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#B6E7C5" HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Click="butcancelpet_Click" Content="Save"  />
+                <Button Grid.Column="2" Grid.Row="6" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Click="butcancelpet_Click" Margin="20,0,0,0"/>
             </Grid>
         </Border>
     </Grid>
