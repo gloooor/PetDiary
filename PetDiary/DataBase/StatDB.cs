@@ -25,7 +25,7 @@ namespace PetDiary.DataBase
                 {
                     while (rdr.Read())
                     {
-                        list.Add(new Stat((int)rdr["Number"], (int)rdr["Weight"], (int)rdr["PetId"]));
+                        list.Add(new Stat(Convert.ToDateTime(rdr["Date"]), (int)rdr["Weight"], (int)rdr["PetId"]));
                     }
                     return list;
                 }
@@ -40,7 +40,7 @@ namespace PetDiary.DataBase
                 DB.Close_DB_Connection();
             }
         }
-        static public void AddStat(int Number, int Weight, int OwnerId)
+        static public void AddStat(DateTime Date, int Weight, int OwnerId)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace PetDiary.DataBase
                     " (@number, @weight, @petid);";
 
                 SqlCommand cmd_Command = new SqlCommand(query, cn_connection);
-                cmd_Command.Parameters.AddWithValue("@number", Number);
+                cmd_Command.Parameters.AddWithValue("@number", Date.ToString("MM/dd/yyyy"));
                 cmd_Command.Parameters.AddWithValue("@weight", Weight);
                 cmd_Command.Parameters.AddWithValue("@petid", OwnerId);
                 cmd_Command.ExecuteNonQuery();

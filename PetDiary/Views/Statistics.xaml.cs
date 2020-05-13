@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetDiary.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,16 @@ namespace PetDiary
         public Statistics()
         {
             InitializeComponent();
+            ViewModel.StatViewModel.GetStatistic(ViewModel.PetViewModel.SelectedPet.Id);
+            ViewModel.AddPetViewModel.InitPet();
+            DataContext = ApplicationContext.Get();
+        }
+
+        private void butcancelpet_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new MainWindow();
+            window.Show();
+            this.Close();
         }
     }
 }

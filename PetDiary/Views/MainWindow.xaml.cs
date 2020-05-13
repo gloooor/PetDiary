@@ -120,5 +120,12 @@ namespace PetDiary
             window.Show();
             this.Close();
         }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            var window = new Statistics();
+            window.Show();
+            this.Close();
+        }
     }
 }

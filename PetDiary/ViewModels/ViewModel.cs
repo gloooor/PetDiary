@@ -16,6 +16,7 @@ namespace PetDiary.ViewModels
         public ReportActivityViewModel ReportActivityViewModel { get; set; }
         public ReportFeedingViewModel ReportFeedingViewModel { get; set; }
         public RegistrationViewModel RegistrationViewModel { get; set; }
+        public StatViewModel StatViewModel { get; set; }
         public static ApplicationContext Get()
         {
             return new ApplicationContext
@@ -27,7 +28,8 @@ namespace PetDiary.ViewModels
                 AddPetViewModel = ViewModel.AddPetViewModel,
                 ReportActivityViewModel = ViewModel.ReportActivityViewModel,
                 ReportFeedingViewModel = ViewModel.ReportFeedingViewModel,
-                RegistrationViewModel = ViewModel.RegistrationViewModel
+                RegistrationViewModel = ViewModel.RegistrationViewModel,
+                StatViewModel = ViewModel.StatViewModel,
             };
         }
     }
@@ -43,6 +45,7 @@ namespace PetDiary.ViewModels
         private static ReportFeedingViewModel _addFeedingViewModel;
         private static RegistrationViewModel _registrationViewModel;
         private static ReportStatViewModel _reportStatViewModel;
+        private static StatViewModel _statViewModel;
         public static UserViewModel UserViewModel {
             get {
                 return _userViewModel ?? (_userViewModel = new UserViewModel());
@@ -71,6 +74,11 @@ namespace PetDiary.ViewModels
         public static ReportStatViewModel ReportStatViewModel {
             get {
                 return _reportStatViewModel ?? (_reportStatViewModel = new ReportStatViewModel());
+            }
+        }
+        public static StatViewModel StatViewModel {
+            get {
+                return _statViewModel ?? (_statViewModel = new StatViewModel());
             }
         }
         public static ReportActivityViewModel ReportActivityViewModel {

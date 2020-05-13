@@ -59,7 +59,7 @@
             <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
             <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Click="Button_Click_1" >Add Activity Note</Button>
             <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" >Add Feeding Note</Button>
-            <Button Grid.Column="3" Style="{StaticResource MenuButtons}">Stat</Button>
+            <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Click="Button_Click_3">Stat</Button>
             <Button Grid.Column="4" Style="{StaticResource MenuButtons}">About</Button>
             <Button Grid.Column="5" Style="{StaticResource MenuButtons}">Profile</Button>
             <Button Grid.Column="6" Style="{StaticResource MenuButtons}">Settins</Button>

@@ -1,4 +1,6 @@
-﻿using PetDiary.Command;
+﻿using LiveCharts;
+using LiveCharts.Defaults;
+using PetDiary.Command;
 using PetDiary.DataBase;
 using System;
 using System.Collections.Generic;
@@ -19,12 +21,29 @@ namespace PetDiary.ViewModels
             set {
                 _statistic = value;
                 OnPropertyChanged(nameof(Statistic));
+                labels.Clear();
+                foreach (Stat el in Statistic)
+                {
+                    labels.Add(el.Date.ToString("MM/dd/yyyy"));
+                }
             }
         }
 
-        private ObservableCollection<Stat> _statistic;
+        List<string> labels = new List<string>();
 
-
+    private ObservableCollection<Stat> _statistic;
+        public ChartValues<DateTimePoint> RawDataSeries {
+            get {
+                ChartValues<DateTimePoint> Values = new ChartValues<DateTimePoint>();
+                foreach (Stat el in Statistic)
+                {
+                    Values.Add(new DateTimePoint(el.Date, el.Weight));
+                }
+                return Values;
+            }
+        }
+       
+     
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if (PropertyChanged != null)
@@ -43,7 +62,7 @@ namespace PetDiary.ViewModels
                   (_addStatCommand = new RelayCommand(obj =>
                   {
                       var item = ViewModel.ReportStatViewModel.Stat;
-                      StatDB.AddStat(item.Number, item. Weight, ViewModel.PetViewModel.SelectedPet.Id);
+                      StatDB.AddStat(item.Date, item. Weight, ViewModel.PetViewModel.SelectedPet.Id);
                       if (ViewModel.PetViewModel.SelectedPet != null)
                       {
                           GetStatistic(ViewModel.PetViewModel.SelectedPet.Id);
