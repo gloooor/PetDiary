@@ -44,17 +44,13 @@
                     <lvc:CartesianChart.Series>
                         <lvc:ScatterSeries Title="Raw Data" Values="{Binding StatViewModel.RawDataSeries}" />
                     </lvc:CartesianChart.Series>
-                    <lvc:CartesianChart.AxisX>
-                        <lvc:Axis Title="X" Labels="{Binding StatViewModel.labels}"></lvc:Axis>
-                    </lvc:CartesianChart.AxisX>
                 </lvc:CartesianChart>
                 <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/5.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
-
                 <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
                     <Label HorizontalContentAlignment="Left" Content="Weight" VerticalContentAlignment="Bottom"/>
-                    <TextBox  Background="#F0F0F0" Width="40" Height="28" VerticalAlignment="Bottom" Margin="10,0,0,0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox Grid.Row="4" Grid.Column="1" Width="50" Height="20" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
                         <TextBox.Text>
-                            <Binding Path="AddPetViewModel.Name" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="ReportStatViewModel.Weight" Mode="TwoWay" ValidatesOnExceptions="True"  UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>

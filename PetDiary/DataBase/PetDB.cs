@@ -43,6 +43,36 @@ namespace PetDiary.DataBase
             }
         }
 
+        static public void UpdatePet(int Id, string Name, string Breed, int Age, string Sex, string Date, bool Insured, bool Desexed, string Type)
+        {
+            try
+            {
+                SqlConnection cn_connection = DB.ConnectDB();
+                var query = "update [dbPet] set [Name]=@name, [Breed]=@breed, [Age]=@age, [Sex]=@sex, [DateOfBirth]=@date, [Insured]=@insured," +
+                    " [Desexed]=@desexed, [Type]=@type where [Id]=@id";
+
+                SqlCommand cmd_Command = new SqlCommand(query, cn_connection);
+                cmd_Command.Parameters.AddWithValue("@name", Name);
+                cmd_Command.Parameters.AddWithValue("@breed", Breed);
+                cmd_Command.Parameters.AddWithValue("@age", Age);
+                cmd_Command.Parameters.AddWithValue("@sex", Sex);
+                cmd_Command.Parameters.AddWithValue("@date", Date);
+                cmd_Command.Parameters.AddWithValue("@insured", Insured);
+                cmd_Command.Parameters.AddWithValue("@desexed", Desexed);
+                cmd_Command.Parameters.AddWithValue("@type", Type);
+                cmd_Command.Parameters.AddWithValue("@id", Id);
+                cmd_Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DB.Close_DB_Connection();
+            }
+        }
+
         static public void DeletePetById(int petId)
         {
             try
@@ -78,7 +108,7 @@ namespace PetDiary.DataBase
                 {
                     while (rdr.Read())
                     {
-                        list.Add(new Pet((int)rdr["Id"], (string)rdr["Type"], (int)rdr["Age"], (string)rdr["Name"], (string)rdr["Sex"],
+                        list.Add(new Pet((int)rdr["Id"], (string)rdr["Type"], (int)rdr["Age"], (string)rdr["Name"], rdr["Sex"].ToString(),
                         (bool)rdr["Desexed"], (bool)rdr["Insured"], (string)rdr["Breed"], rdr["DateOfBirth"].ToString(), (int)rdr["OwnerId"]));
                     }
 

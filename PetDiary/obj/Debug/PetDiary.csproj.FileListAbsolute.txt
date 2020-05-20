@@ -9,9 +9,6 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.Prope
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csproj.GenerateResource.cache
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.exe
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.pdb
-C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary_Content.g.cs
-C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\DB.mdf
-C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\DB_log.ldf
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\AddPet.g.cs
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\Login.g.cs
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\MainWindow.g.cs
@@ -40,6 +37,8 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\LiveCharts.pdb
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\LiveCharts.xml
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\LiveCharts.Wpf.pdb
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\LiveCharts.Wpf.xml
-C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csprojAssemblyReference.cache
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignColors.dll
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesignColors.pdb
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\PetProfile.g.cs
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\PetProfile.baml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csprojAssemblyReference.cache

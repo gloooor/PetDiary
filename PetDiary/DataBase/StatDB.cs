@@ -45,11 +45,11 @@ namespace PetDiary.DataBase
             try
             {
                 SqlConnection cn_connection = DB.ConnectDB();
-                var query = "insert into [dbWeight] ([Number], [Weight], [PetId]) values" +
+                var query = "insert into [dbWeight] ([Date], [Weight], [PetId]) values" +
                     " (@number, @weight, @petid);";
 
                 SqlCommand cmd_Command = new SqlCommand(query, cn_connection);
-                cmd_Command.Parameters.AddWithValue("@number", Date.ToString("MM/dd/yyyy"));
+                cmd_Command.Parameters.AddWithValue("@number", Date.ToString("dd/MM/yyyy"));
                 cmd_Command.Parameters.AddWithValue("@weight", Weight);
                 cmd_Command.Parameters.AddWithValue("@petid", OwnerId);
                 cmd_Command.ExecuteNonQuery();

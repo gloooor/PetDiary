@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class ActivityNoteViewModel: INotifyPropertyChanged
+    public class ActivityNoteViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<ActivityNote> ActivityNotes {
@@ -21,7 +21,7 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged(nameof(ActivityNotes));
             }
         }
-       
+
         private ObservableCollection<ActivityNote> _activityNotes;
         private readonly ActivityNoteDB _activityDB = new ActivityNoteDB();
 
@@ -44,10 +44,11 @@ namespace PetDiary.ViewModels
                   (_addActivityNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportActivityViewModel.Note;
-                      ActivityNoteDB.AddNote(note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating, ViewModel.PetViewModel.SelectedPet.Id);
-                      if (ViewModel.PetViewModel.SelectedPet != null)
+
+                      if (ViewModel.MainWindowViewModel.SelectedPet != null)
                       {
-                          GetPetActivityNotes(ViewModel.PetViewModel.SelectedPet.Id);
+                          ActivityNoteDB.AddNote(note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating, ViewModel.MainWindowViewModel.SelectedPet.Id);
+                          GetPetActivityNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
                       }
                   }));
             }
@@ -59,13 +60,34 @@ namespace PetDiary.ViewModels
                 return _deleteActivityNoteCommand ??
                   (_deleteActivityNoteCommand = new RelayCommand(obj =>
                   {
-                      ActivityNoteDB.DeleteNoteById(SelectedActivityNote.Id);
-                      ActivityNotes.Remove(SelectedActivityNote);
-                      SelectedActivityNote = ActivityNotes.FirstOrDefault();
+                      if (SelectedActivityNote != null)
+                      {
+                          ActivityNoteDB.DeleteNoteById(SelectedActivityNote.Id);
+                          ActivityNotes.Remove(SelectedActivityNote);
+                          SelectedActivityNote = ActivityNotes.FirstOrDefault();
+                      }
                   }));
             }
         }
 
+        private RelayCommand sortActivityCommand;
+
+        public RelayCommand SortActivityCommand => this.sortActivityCommand ??
+                    (this.sortActivityCommand = new RelayCommand(obj =>
+                    {
+                        ActivityNotes = new ObservableCollection<ActivityNote>(this.ActivityNotes.OrderBy(x => x.Date));
+                    }));
+        private RelayCommand changeActivityCommand;
+
+        public RelayCommand ChangeActivityCommand => this.changeActivityCommand ??
+                    (this.changeActivityCommand = new RelayCommand(obj =>
+                    {
+                        if (ViewModel.ActivityNoteViewModel.SelectedActivityNote != null)
+                        {
+                            var note = ViewModel.ActivityNoteViewModel.SelectedActivityNote;
+                            ActivityNoteDB.UpdateNote(note.Id, note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating);
+                        }
+                    }));
 
         ActivityNote _selectedActivityNote;
 

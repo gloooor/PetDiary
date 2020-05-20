@@ -10,6 +10,34 @@ namespace PetDiary.DataBase
 {
     public class FeedingNoteDB
     {
+        static public void UpdateNote(int Id, string Date, bool WetFood, bool DryFood, bool Meat, bool Medicines, bool Other)
+        {
+            try
+            {
+                SqlConnection cn_connection = DB.ConnectDB();
+                var query = "update [dbFeedingNote]  set [Date] = CONVERT(date, @date), [WetFood] = @wetfood," +
+                    " [DryFood] = @dryfood, [Meat] = @meat, [Medicines] = @medicines, [Other] = @other where Id = @id";
+
+                SqlCommand cmd_Command = new SqlCommand(query, cn_connection);
+                cmd_Command.Parameters.AddWithValue("@date", Date.ToString());
+                cmd_Command.Parameters.AddWithValue("@wetfood", WetFood);
+                cmd_Command.Parameters.AddWithValue("@dryfood", DryFood);
+                cmd_Command.Parameters.AddWithValue("@meat", Meat);
+                cmd_Command.Parameters.AddWithValue("@medicines", Medicines);
+                cmd_Command.Parameters.AddWithValue("@other", Other);
+                cmd_Command.Parameters.AddWithValue("@id", Id);
+                cmd_Command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                DB.Close_DB_Connection();
+            }
+        }
+
         static public void AddNote(string Date, bool WetFood, bool DryFood, bool Meat, bool Medicines, bool Other, int petID)
         {
             try

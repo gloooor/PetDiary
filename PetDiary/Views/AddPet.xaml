@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:local1="clr-namespace:PetDiary.Converters"
         mc:Ignorable="d"
         Title="AddPet" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="620" Background="Transparent" WindowStartupLocation="CenterScreen">
-    <Grid>
 
+    <Grid>
         <Border Background="#F9FADC" CornerRadius="20" Margin="20,20,20,30">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -81,20 +82,21 @@
                             </TextBox.Text>
                         </TextBox>
                         <Label Content="Sex" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <StackPanel Grid.Row="4" Grid.Column="2" Orientation="Horizontal">
-                            <RadioButton GroupName="sex" Content="Male" IsChecked="True"  VerticalAlignment="Center"/>
-                            <RadioButton GroupName="sex" Content="Female" Margin="10, 0, 0, 0" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <ComboBox x:Name="sexlist" Grid.Row="4" Grid.Column="2"  Height="auto">
+                            <ComboBox.SelectedValue>
+                                <Binding Path="AddPetViewModel.Sex" ValidatesOnDataErrors="True">
+                                    <Binding.ValidationRules>
+                                        <DataErrorValidationRule/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </ComboBox.SelectedValue>
+                        </ComboBox>
                         <Label Content="Desexed" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal">
-                            <RadioButton GroupName="desexed" Content="True" IsChecked="True"  VerticalAlignment="Center"/>
-                            <RadioButton GroupName="desexed" Content="False" Margin="10, 0, 0, 0" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <CheckBox x:Name="desexedcheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding AddPetViewModel.Desexed}"/>
+
                         <Label Content="Insured" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <StackPanel Grid.Row="6" Grid.Column="2" Orientation="Horizontal">
-                            <RadioButton GroupName="insured" Content="True" IsChecked="True"  VerticalAlignment="Center"/>
-                            <RadioButton GroupName="insured" Content="False" Margin="10, 0, 0, 0" VerticalAlignment="Center"/>
-                        </StackPanel>
+                        <CheckBox x:Name="insuredcheck" Grid.Row="6" Grid.Column="2" IsChecked="{Binding AddPetViewModel.Insured}" />
+
                         <Label Content="Type" Grid.Row="7" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <ComboBox x:Name="typelist" Grid.Row="7" Grid.Column="2"  Height="auto">
                             <ComboBox.SelectedValue>
@@ -109,7 +111,7 @@
                         <Label Content="DateOfBirth" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <DatePicker Grid.Column="2" Grid.Row="8" Height="auto">
                             <DatePicker.Text>
-                                <Binding Path="AddPetViewModel.DateOfBirth" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding Path="AddPetViewModel.DateOfBirth" StringFormat='dd/MM/yyyy' Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule/>
                                     </Binding.ValidationRules>
@@ -119,7 +121,6 @@
                     </Grid>
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/1.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
-
                 <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding PetViewModel.AddPetCommand}" Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Click="butcancelpet_Click" Content="Save"/>
                 <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet"  Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click"/>
             </Grid>

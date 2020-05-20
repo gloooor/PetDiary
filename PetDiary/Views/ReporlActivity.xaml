@@ -31,7 +31,7 @@
 
                 <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
                 <Border Grid.Row="3" Background="#DAE2F3" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
-                    <Grid>
+                    <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
                             <ColumnDefinition Width="0.5*"/>
@@ -72,7 +72,7 @@
                             </TextBox.Text>
                         </TextBox>
                         <Label Content="Comment" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox x:Name="txtcomment" Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3">
+                        <TextBox x:Name="txtcomment" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3">
                             <TextBox.Text>
                                 <Binding Path="ReportActivityViewModel.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -92,9 +92,9 @@
                             </TextBox.Text>
                         </TextBox>
                         <Label Content="Date" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <DatePicker Grid.Column="2" Grid.Row="6" Height="auto">
+                        <DatePicker SelectedDateFormat="Short" Grid.Column="2" Grid.Row="6" Height="auto">
                             <DatePicker.Text>
-                                <Binding Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                                <Binding StringFormat='dd/MM/yyyy' Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
                                         <DataErrorValidationRule/>
                                     </Binding.ValidationRules>

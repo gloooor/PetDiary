@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PetDiary"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:toolkit="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
         Title="MainWindow" Background="Ivory" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
@@ -14,6 +15,11 @@
             <Setter Property="Background" Value="#FFC7DD"/>
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="MinWidth" Value="100"/>
+            <Setter Property="Height" Value="Auto"/>
+        </Style>
+        <Style TargetType="Button" x:Key="AboutButtons">
+            <Setter Property="Background" Value="#FFC7DD"/>
+            <Setter Property="Width" Value="Auto"/>
             <Setter Property="Height" Value="Auto"/>
         </Style>
         <Style TargetType="Button" x:Key="DeleteButtons">
@@ -52,19 +58,25 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
             <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Click="Button_Click_1" >Add Activity Note</Button>
             <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" >Add Feeding Note</Button>
             <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Click="Button_Click_3">Stat</Button>
-            <Button Grid.Column="4" Style="{StaticResource MenuButtons}">About</Button>
-            <Button Grid.Column="5" Style="{StaticResource MenuButtons}">Profile</Button>
-            <Button Grid.Column="6" Style="{StaticResource MenuButtons}">Settins</Button>
-            <Button Grid.Column="7" Style="{StaticResource MenuButtons}" Click="del" >Log out</Button>
-            <Button Grid.Column="8" Style="{StaticResource MenuButtons}" Click="clo"/>
+            <Button Grid.Column="4" Style="{StaticResource MenuButtons}" Click="Button_Click_4">Profile</Button>
+            <Button Grid.Column="5" Style="{StaticResource MenuButtons}" Click="del" >Log out</Button>
+            <Button Grid.Column="6" Style="{StaticResource AboutButtons}">
+                <TextBlock Text="About" >
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Button>
+            <Button Grid.Column="7" Style="{StaticResource AboutButtons}" Click="clo">
+                <Image Source="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\images\icon.png" />
+            </Button>
         </Grid>
 
         <Grid Grid.Column="0"  Grid.Row="1">
@@ -78,26 +90,30 @@
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" HorizontalAlignment="Center" Height="50" VerticalAlignment="Center"   FontSize="25">PETS</Label>
-            <ListView Grid.Row="1" x:Name="petsList" SelectedItem="{Binding PetViewModel.SelectedPet, Mode=TwoWay}"
-      ItemsSource="{Binding PetViewModel.Pets}" SelectionChanged="petsList_SelectionChanged">
-                <ListView.ItemContainerStyle>
 
-                    <Style>
-                        <Setter Property="ListBoxItem.Background" Value="LightSteelBlue"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
+            <StackPanel  Grid.Row="1" >
+                <TextBox Margin="5" Text="{Binding Path=MainWindowViewModel.Filter, UpdateSourceTrigger=PropertyChanged}" Width="150" />
+                <ListView x:Name="petsList" SelectedItem="{Binding MainWindowViewModel.SelectedPet, Mode=TwoWay}"
+     ItemsSource="{Binding MainWindowViewModel.FilteredPets}"  SelectionChanged="petsList_SelectionChanged">
+                    <ListView.ItemContainerStyle>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource DogList}" Text="{Binding Name}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
-                            <TextBlock Style="{StaticResource DogList}" Text="{Binding Age}" FontSize="12"  Background="{x:Null}"/>
-                            <TextBlock Style="{StaticResource DogList}" Text="{Binding Sex}" FontSize="12" Background="{x:Null}"/>
-                            <TextBlock Style="{StaticResource DogList}" Text="{Binding Breed}" FontSize="12" Background="{x:Null}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>            
+                        <Style>
+                            <Setter Property="ListBoxItem.Background" Value="LightSteelBlue"/>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Name}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Age}" FontSize="12"  Background="{x:Null}"/>
+                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Sex}" FontSize="12" Background="{x:Null}"/>
+                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Breed}" FontSize="12" Background="{x:Null}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
             <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/6.gif" Height="100"/>
             <Button Grid.Row="3" Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
             </Button>
@@ -108,7 +124,7 @@
                 <RowDefinition/>
                 <RowDefinition Height="170"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
+            <Grid Grid.Row="0" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="auto"/>
@@ -117,10 +133,13 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="7*"/>
+                    <RowDefinition Height="4*"/>
                 </Grid.RowDefinitions>
-                <Label Content="Notes about activity" Grid.Row="0" Grid.Column="0" FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
-
+                <StackPanel Grid.Row="0" Grid.Column="0">
+                    <Label Content="Notes about activity"  FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
+                    <Button  Height="20" Style="{StaticResource DeleteButtons}" Content="Sort notes by date" Command="{Binding ActivityNoteViewModel.SortActivityCommand}" Grid.Column="2">
+                    </Button>
+                </StackPanel>
                 <ListView x:Name="actList" Grid.Column="0" Grid.Row="1"
       ItemsSource="{Binding ActivityNoteViewModel.ActivityNotes, Mode=TwoWay}" SelectedItem="{Binding ActivityNoteViewModel.SelectedActivityNote, Mode=TwoWay}" SelectionChanged="ActList_SelectionChanged" BorderBrush="Transparent" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
@@ -138,15 +157,27 @@
                     </ListBox.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Id}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Text="{Binding Location}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Text="{Binding Rating}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Time:" Margin="0,0,0,10" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                    <TextBlock Text="{Binding Hours}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                    <TextBlock Text=":" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                    <TextBlock Text="{Binding Minutes}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <GridSplitter Grid.Column="1" Grid.RowSpan="3" ShowsPreview="False" Width="3"
         HorizontalAlignment="Center" VerticalAlignment="Stretch" />
-                <Label Content="Notes about feeding" Grid.Row="0" Grid.Column="2" FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"/>
+                <StackPanel Grid.Row="0" Grid.Column="2">
+                    <Label Content="Notes about feeding"  FontSize="23" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
+                    <Button Height="20" Style="{StaticResource DeleteButtons}" Content="Sort notes by date" Command="{Binding FeedingNoteViewModel.SortFeedingCommand}" Grid.Column="2">
+                    </Button>
+                </StackPanel>
                 <ListView x:Name="feedList" Grid.Column="2" Grid.Row="1"
       ItemsSource="{Binding FeedingNoteViewModel.FeedingNotes}" SelectedItem="{Binding FeedingNoteViewModel.SelectedFeedingNote, Mode=TwoWay}" BorderBrush="Transparent" SelectionChanged="FeedList_SelectionChanged" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
@@ -176,7 +207,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <GroupBox x:Name="groupBox" Header="{Binding PetViewModel.SelectedPet.Name}" Foreground="Black" BorderBrush="Black" Height="auto" Width="auto" >
+                <GroupBox x:Name="groupBox" Header="{Binding MainWindowViewModel.SelectedPet.Name}" Foreground="Black" BorderBrush="Black" Height="auto" Width="auto" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
@@ -233,7 +264,7 @@
                                 </TextBox>
                             </StackPanel>
                             <Label Content="Comment" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                            <TextBox Grid.Row="2"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
+                            <TextBox Grid.Row="2" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
                                 <TextBox.Text>
                                     <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -253,7 +284,7 @@
                                 </TextBlock.LayoutTransform>
                             </TextBlock>
                         </Button>
-                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.ChangeActivityNoteCommand}" Grid.Column="1">
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.ChangeActivityCommand}" Grid.Column="1">
                             <TextBlock Text="CHANGE" >
                                 <TextBlock.LayoutTransform>
                                     <RotateTransform Angle="90" />
@@ -317,7 +348,7 @@
                                 </TextBlock.LayoutTransform>
                             </TextBlock>
                         </Button>
-                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding FeedingNoteViewModel.ChangeFeedingNoteCommand}" Grid.Column="1">
+                        <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding FeedingNoteViewModel.ChangeFeedingCommand}" Grid.Column="1">
                             <TextBlock Text="CHANGE" >
                                 <TextBlock.LayoutTransform>
                                     <RotateTransform Angle="90" />

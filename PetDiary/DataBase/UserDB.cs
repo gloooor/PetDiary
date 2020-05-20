@@ -12,7 +12,7 @@ namespace PetDiary.DataBase
 {
     public class UserDB
     {
-        public static bool AddUser(string FirstName, string LastName, int Age, string Password)
+        public static bool AddUser(string Login, string Password)
         {
 
             try
@@ -20,13 +20,11 @@ namespace PetDiary.DataBase
                 var sqlCon = DB.ConnectDB();
                 if (sqlCon.State == System.Data.ConnectionState.Closed) sqlCon.Open();
 
-                String query = "insert into dbUser (FirstName, LastName, Password, Age) values (@FirstName, @LastName, @Password, @Age)";
+                String query = "insert into dbUser (Login, Password) values (@Login, @Password)";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@FirstName", FirstName);
-                sqlCmd.Parameters.AddWithValue("@LastName", LastName);
+                sqlCmd.Parameters.AddWithValue("@Login", Login);
                 sqlCmd.Parameters.AddWithValue("@Password", Convert.ToString(DB.Hash(Password)));
-                sqlCmd.Parameters.AddWithValue("@Age", Age);
                 sqlCmd.ExecuteNonQuery();
                 return true;
 
@@ -42,17 +40,16 @@ namespace PetDiary.DataBase
             }
 
         }
-        public User GetUserByFirstNameAndLastName(string firstName, string lastName)
+        public User GetUserByLogin(string login)
         {
 
             try
             {
                 var sqlCon = DB.ConnectDB();
-                var query = "SELECT TOP(1) * FROM dbUser WHERE FirstName=@Firstname AND LastName=@Lastname";
+                var query = "SELECT TOP(1) * FROM dbUser WHERE Login=@Login";
                 var sqlCmd = new SqlCommand(query, sqlCon);
                 sqlCmd.CommandType = CommandType.Text;
-                sqlCmd.Parameters.AddWithValue("@Lastname", lastName);
-                sqlCmd.Parameters.AddWithValue("@Firstname", firstName);
+                sqlCmd.Parameters.AddWithValue("@Login", login);
 
                 using (var rdr = sqlCmd.ExecuteReader())
                 {
@@ -60,8 +57,7 @@ namespace PetDiary.DataBase
                     {
                         return new User
                         {
-                            FirstName = rdr["FirstName"].ToString(),
-                            LastName = rdr["LastName"].ToString(),
+                           Login = rdr["Login"].ToString(),
                             Id = (int)rdr["Id"],
                             Password = rdr["Password"].ToString()
                         };

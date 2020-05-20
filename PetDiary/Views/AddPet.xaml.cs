@@ -21,12 +21,14 @@ namespace PetDiary
     public partial class AddPet : Window
     {
         public List<string> myTypes { get; set; }
-        public PetViewModel PetViewModel { get; set; }
+        public List<string> myGender { get; set; }
         public AddPet()
         {
             InitializeComponent();
             myTypes = new List<string> { "Dog", "Cat", "Parrot", "Humster" };
+            myGender = new List<string> { "Male", "Female"};
             typelist.ItemsSource = myTypes;
+            sexlist.ItemsSource = myGender;
             ViewModel.AddPetViewModel.InitPet(true);
             DataContext = ApplicationContext.Get();
         }

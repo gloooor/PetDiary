@@ -1,4 +1,5 @@
 ﻿using PetDiary.ViewModels;
+using PetDiary.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,12 +34,12 @@ namespace PetDiary
         }
         private void RefreshNotes()
         {
-            if (ViewModel.PetViewModel.SelectedPet==null)
+            if (ViewModel.MainWindowViewModel.SelectedPet ==null)
             {
                 return;
             }
-            ViewModel.ActivityNoteViewModel.GetPetActivityNotes(ViewModel.PetViewModel.SelectedPet.Id);
-            ViewModel.FeedingNoteViewModel.GetPetFeedingNotes(ViewModel.PetViewModel.SelectedPet.Id);
+            ViewModel.ActivityNoteViewModel.GetPetActivityNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
+            ViewModel.FeedingNoteViewModel.GetPetFeedingNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,17 +63,17 @@ namespace PetDiary
 
         private void petsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (!ViewModel.PetViewModel.Pets.Any())
+            if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
             {
-                ViewModel.PetViewModel.SelectedPet = null;
+                //ViewModel.MainWindowViewModel.SelectedPet = null;
                 return;
             }
             var index = petsList.SelectedIndex;
-            if (index >= ViewModel.PetViewModel.Pets.Count || index < 0)
+            if (index >= ViewModel.MainWindowViewModel.FilteredPets.Count || index < 0)
             {
                 index = 0;
             }
-            ViewModel.PetViewModel.SelectedPet = ViewModel.PetViewModel.Pets[index];
+            ViewModel.MainWindowViewModel.SelectedPet = ViewModel.MainWindowViewModel.FilteredPets[index];
             RefreshNotes();
         }
 
@@ -124,6 +125,13 @@ namespace PetDiary
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             var window = new Statistics();
+            window.Show();
+            this.Close();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            var window = new PetProfile();
             window.Show();
             this.Close();
         }

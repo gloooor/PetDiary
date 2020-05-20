@@ -40,7 +40,7 @@ namespace PetDiary
         private void butLogin_Click(object sender, RoutedEventArgs e)
         {
             var hash = DB.Hash(txtpassword.Password);
-            var user = _userDB.GetUserByFirstNameAndLastName(txtfirstname.Text, txtlastname.Text);
+            var user = _userDB.GetUserByLogin(txtlogin.Text);
 
             if (user.Password!=hash)
             {

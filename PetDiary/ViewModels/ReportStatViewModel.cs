@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class ReportStatViewModel: INotifyPropertyChanged
+    public class ReportStatViewModel : INotifyPropertyChanged
     {
         public Stat Stat { get; set; }
         public void InitStat(bool force = false)
@@ -25,7 +25,7 @@ namespace PetDiary.ViewModels
                 if (value == 0)
                     throw new ArgumentException("Введите вес");
                 else
-                {
+                { 
                     Stat.Weight = value;
                     OnPropertyChanged(nameof(this.Weight));
                 }

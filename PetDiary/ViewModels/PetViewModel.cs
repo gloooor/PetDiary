@@ -29,18 +29,7 @@ namespace PetDiary.ViewModels
 
         private ObservableCollection<Pet> _pets;
         private readonly PetDB _petDB = new PetDB();
-        Pet _selectedPet;
-
-        public Pet SelectedPet {
-            get {
-                return _selectedPet;
-            }
-
-            set {
-                _selectedPet = value;
-                OnPropertyChanged("SelectedPet");
-            }
-        }
+       
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
@@ -63,6 +52,7 @@ namespace PetDiary.ViewModels
                   (_addPetCommand = new RelayCommand(obj =>
                   {
                       var pet = ViewModel.AddPetViewModel.Pet;
+                      ViewModel.MainWindowViewModel.FilteredPets.Add(pet);
                       Pets.Add(pet);
                       PetDB.AddPet(pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type, ViewModel.UserViewModel.User.Id);
                       if (ViewModel.UserViewModel.User != null)
@@ -79,20 +69,31 @@ namespace PetDiary.ViewModels
                 return _deletePetCommand ??
                   (_deletePetCommand = new RelayCommand(obj =>
                   {
-
-                      PetDB.DeletePetById(SelectedPet.Id);
-                      Pets.Remove(SelectedPet);
-                      SelectedPet = Pets.FirstOrDefault();
+                      if (ViewModel.MainWindowViewModel.SelectedPet != null)
+                      {
+                          PetDB.DeletePetById(ViewModel.MainWindowViewModel.SelectedPet.Id);
+                          ViewModel.MainWindowViewModel.FilteredPets.Remove(ViewModel.MainWindowViewModel.SelectedPet);
+                          ViewModel.MainWindowViewModel.SelectedPet =  ViewModel.MainWindowViewModel.FilteredPets.FirstOrDefault();
+                          Pets.Remove(ViewModel.MainWindowViewModel.SelectedPet);
+                      }
                   }));
             }
         }
+        private RelayCommand changePetCommand;
+        public RelayCommand ChangePetCommand => this.changePetCommand ??
+            (this.changePetCommand = new RelayCommand(obj =>
+            {
+                var pet = ViewModel.MainWindowViewModel.SelectedPet;
+                PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
+            }
+            ));
 
         public void GetUserPets(int userId)
         {
             Pets.Clear();
             var items = PetDB.GetPetsByUserId(userId);
             items.ForEach(Pets.Add);
-            SelectedPet = Pets.FirstOrDefault();
+            ViewModel.MainWindowViewModel.InitFilters();
         }
     }
 }

@@ -78,13 +78,8 @@ namespace PetDiary.ViewModels
             get => this.Pet.Sex;
             set {
                 InitPet();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    Pet.Sex = value;
-                    OnPropertyChanged(nameof(this.Sex));
-                }
+                Pet.Sex = value;
+                OnPropertyChanged(nameof(this.Sex));
             }
         }
 

@@ -13,7 +13,7 @@ namespace PetDiary.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public bool IsValid {
-            get => (FirstName != "" && LastName != "" && Age != 0 && Password != "");
+            get => (Login != "" && Password != "");
         }
         public User User { get; set; }
         public void InitUser(bool force = false)
@@ -23,44 +23,21 @@ namespace PetDiary.ViewModels
                 User = new User();
             }
         }
-        public string FirstName {
-            get => User.FirstName;
+        public string Login {
+            get => User.Login;
             set {
                 InitUser();
                 if (value == null)
                     throw new ArgumentException("Выберите имя");
                 else
                 {
-                    User.FirstName = value;
-                    OnPropertyChanged(nameof(this.FirstName));
+                    User.Login = value;
+                    OnPropertyChanged(nameof(this.Login));
                     OnPropertyChanged(nameof(IsValid));
                 }
             }
         }
-        public string LastName {
-            get => this.User.LastName;
-            set {
-                InitUser();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    User.LastName = value;
-                    OnPropertyChanged(nameof(this.LastName));
-                    OnPropertyChanged(nameof(IsValid));
-                }
-            }
-        }
-
-        public int Age {
-            get => this.User.Age;
-            set {
-                InitUser();
-                User.Age = value;
-                OnPropertyChanged(nameof(this.Age));
-                OnPropertyChanged(nameof(IsValid));
-            }
-        }
+     
 
 
         public string Password {

@@ -40,10 +40,10 @@ namespace PetDiary.ViewModels
                   (_addFeedingNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportFeedingViewModel.FeedingNote;
-                      FeedingNoteDB.AddNote(note.Date, note.WetFood, note.DryFood, note.Meat, note.Medicines, note.Other, ViewModel.PetViewModel.SelectedPet.Id);
-                      if (ViewModel.PetViewModel.SelectedPet != null)
+                      FeedingNoteDB.AddNote(note.Date, note.WetFood, note.DryFood, note.Meat, note.Medicines, note.Other, ViewModel.MainWindowViewModel.SelectedPet.Id);
+                      if (ViewModel.MainWindowViewModel.SelectedPet != null)
                       {
-                          GetPetFeedingNotes(ViewModel.PetViewModel.SelectedPet.Id);
+                          GetPetFeedingNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
                       }
                   }));
             }
@@ -55,14 +55,35 @@ namespace PetDiary.ViewModels
                 return _deleteFeedingNoteCommand ??
                   (_deleteFeedingNoteCommand = new RelayCommand(obj =>
                   {
-
-                      FeedingNoteDB.DeleteNoteById(SelectedFeedingNote.Id);
-                      FeedingNotes.Remove(SelectedFeedingNote);
-                      SelectedFeedingNote = FeedingNotes.FirstOrDefault();
+                      if (SelectedFeedingNote != null)
+                      {
+                          FeedingNoteDB.DeleteNoteById(SelectedFeedingNote.Id);
+                          FeedingNotes.Remove(SelectedFeedingNote);
+                          SelectedFeedingNote = FeedingNotes.FirstOrDefault();
+                      }
                   }));
             }
         }
+        private RelayCommand sortFeedingCommand;
 
+        public RelayCommand SortFeedingCommand => this.sortFeedingCommand ??
+                    (this.sortFeedingCommand = new RelayCommand(obj =>
+                    {
+                        FeedingNotes = new ObservableCollection<FeedingNote>(this.FeedingNotes.OrderBy(x => x.Date));
+
+                    }));
+
+        private RelayCommand changeFeedingCommand;
+        public RelayCommand ChangeFeedingCommand => this.changeFeedingCommand ??
+            (this.changeFeedingCommand = new RelayCommand(obj =>
+            {
+                if (ViewModel.FeedingNoteViewModel.SelectedFeedingNote != null)
+                {
+                    var note = ViewModel.FeedingNoteViewModel.SelectedFeedingNote;
+                    FeedingNoteDB.UpdateNote(note.Id, note.Date, note.WetFood, note.DryFood, note.Meat, note.Medicines, note.Other);
+                }
+            }
+            ));
 
         FeedingNote _selectedFeedingNote;
 

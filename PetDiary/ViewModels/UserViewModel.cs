@@ -55,7 +55,7 @@ namespace PetDiary.ViewModels
                   {
                       var user = ViewModel.RegistrationViewModel.User;
                       UserList.Add(user);
-                      UserDB.AddUser(user.FirstName, user.LastName, user.Age, user.Password);
+                      UserDB.AddUser(user.Login, user.Password);
                   }));
             }
         }

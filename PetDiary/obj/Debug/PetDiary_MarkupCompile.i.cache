@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\App.xaml
-7-269450211
-2862290282
-3640394176
+81812693203
+
+401957217230
 211584406235
-Views\AddPet.xaml;Views\Login.xaml;Views\MainWindow.xaml;Views\Registration.xaml;Views\ReporlActivity.xaml;Views\ReportFeeding.xaml;Views\Statistics.xaml;
+Views\AddPet.xaml;Views\Login.xaml;Views\MainWindow.xaml;Views\PetProfile.xaml;Views\Registration.xaml;Views\ReporlActivity.xaml;Views\ReportFeeding.xaml;Views\Statistics.xaml;
 
 True
 

@@ -22,9 +22,11 @@ namespace PetDiary
     {
         public Statistics()
         {
+
+            ViewModel.ReportStatViewModel.InitStat(true);
             InitializeComponent();
-            ViewModel.StatViewModel.GetStatistic(ViewModel.PetViewModel.SelectedPet.Id);
-            ViewModel.AddPetViewModel.InitPet();
+
+            ViewModel.StatViewModel.GetStatistic(ViewModel.MainWindowViewModel.SelectedPet.Id);
             DataContext = ApplicationContext.Get();
         }
 

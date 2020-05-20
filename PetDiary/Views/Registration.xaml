@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
-        Title="Registration" WindowStyle="None"  AllowsTransparency = "true" Height="400" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Registration" WindowStyle="None"  AllowsTransparency = "true" Height="300" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
         <Border Background="#FFF" CornerRadius="20" Margin="20,20,20,30">
             <StackPanel Margin="15,15,15,20">
                 <Label Content="Registration" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  VerticalContentAlignment="Bottom" Height="60"/>
                 <Separator/>
                 <StackPanel Orientation="Horizontal">
-                    <Label Content="FirstName"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
+                    <Label Content="Login"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
                     <TextBox Width="130" x:Name="txtfirstname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
                         <TextBox.Text>
-                            <Binding Path="RegistrationViewModel.FirstName" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding Path="RegistrationViewModel.Login" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
                                     <DataErrorValidationRule/>
                                 </Binding.ValidationRules>
@@ -23,46 +23,10 @@
                         </TextBox.Text>
                     </TextBox>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="LastName"   Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                    <TextBox Width="130" x:Name="txtlastname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                        <TextBox.Text>
-                            <Binding Path="RegistrationViewModel.LastName" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </StackPanel> 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="Password"  Width="70" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
                     <PasswordBox  Width="130"  x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" PasswordChanged="txtpassword_PasswordChanged"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Mail"  Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                    <TextBox  Width="130" AllowDrop="True" x:Name="txtage" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                        <TextBox.Text>
-                            <Binding Path="RegistrationViewModel.Mail" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Age"  Width="70" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                    <TextBox   Width="130" x:Name="txtmail" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" >
-                        <TextBox.Text>
-                            <Binding Path="RegistrationViewModel.Age" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-             </StackPanel>
                 <Button x:Name="btnRegister" Command="{Binding UserViewModel.AddUserCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Height="28" Width="120" Margin="10,10,10,10" Click="btnRegister_Click"/>
                 <Button x:Name="btnRegisterCancel" Click="btnRegisterCancel_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Width="120" Height="28"/>
             </StackPanel>

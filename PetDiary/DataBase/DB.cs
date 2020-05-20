@@ -29,20 +29,13 @@ namespace PetDiary
             adapter.Fill(res);
             return res;
         }
-        public static void Execute_SQL(string query)
-        {
-            SqlConnection cn = ConnectDB();
-            SqlCommand cmd = new SqlCommand(query, cn);
-            cmd.ExecuteNonQuery();
-        }
+
         public static void Close_DB_Connection()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString; ;
             SqlConnection cn = new SqlConnection(connectionString);
             if (cn.State != ConnectionState.Closed) cn.Close();
         }
-
-
 
         public static string Hash(string input)
         {
@@ -56,7 +49,5 @@ namespace PetDiary
             }
             return output;
         }
-    
-
     }
 }
