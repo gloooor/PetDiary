@@ -31,6 +31,19 @@ namespace PetDiary.ViewModels
                 }
             }
         }
+        public string Color {
+            get => this.Note.Color;
+            set {
+                InitNote();
+                if (value == null)
+                    throw new ArgumentException("Выберите имя");
+                else
+                {
+                    Note.Color = value;
+                    OnPropertyChanged(nameof(this.Color));
+                }
+            }
+        }
         public string Location {
             get => this.Note.Location;
             set {

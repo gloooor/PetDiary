@@ -22,10 +22,8 @@ namespace PetDiary.ViewModels
             get => this.Stat.Weight;
             set {
                 InitStat();
-                if (value == 0)
-                    throw new ArgumentException("Введите вес");
-                else
-                { 
+                if (value > 0 && value < 40)
+                {
                     Stat.Weight = value;
                     OnPropertyChanged(nameof(this.Weight));
                 }

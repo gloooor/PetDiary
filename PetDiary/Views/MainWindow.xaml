@@ -12,13 +12,13 @@
         Title="MainWindow" Background="Ivory" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MenuButtons">
-            <Setter Property="Background" Value="#FFC7DD"/>
+            <Setter Property="Background" Value="#ffbfa6"/>
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="Height" Value="Auto"/>
         </Style>
         <Style TargetType="Button" x:Key="AboutButtons">
-            <Setter Property="Background" Value="#FFC7DD"/>
+            <Setter Property="Background" Value="#ffbfa6"/>
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="Height" Value="Auto"/>
         </Style>
@@ -50,7 +50,6 @@
             <RowDefinition Height="7*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -63,11 +62,11 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
             <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Click="Button_Click_1" >Add Activity Note</Button>
-            <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" >Add Feeding Note</Button>
+            <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" Grid.ColumnSpan="2" Margin="2.4,0,151.2,0" >Add Feeding Note</Button>
             <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Click="Button_Click_3">Stat</Button>
             <Button Grid.Column="4" Style="{StaticResource MenuButtons}" Click="Button_Click_4">Profile</Button>
             <Button Grid.Column="5" Style="{StaticResource MenuButtons}" Click="del" >Log out</Button>
-            <Button Grid.Column="6" Style="{StaticResource AboutButtons}">
+            <Button Grid.Column="6" Style="{StaticResource AboutButtons}" Grid.ColumnSpan="2" Margin="6.2,0,40.6,0">
                 <TextBlock Text="About" >
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="90" />
@@ -81,7 +80,7 @@
 
         <Grid Grid.Column="0"  Grid.Row="1">
             <Grid.Background >
-                <SolidColorBrush Color="#D59A97"/>
+                <SolidColorBrush Color="#FFE2D7"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -96,7 +95,6 @@
                 <ListView x:Name="petsList" SelectedItem="{Binding MainWindowViewModel.SelectedPet, Mode=TwoWay}"
      ItemsSource="{Binding MainWindowViewModel.FilteredPets}"  SelectionChanged="petsList_SelectionChanged">
                     <ListView.ItemContainerStyle>
-
                         <Style>
                             <Setter Property="ListBoxItem.Background" Value="LightSteelBlue"/>
                         </Style>
@@ -144,10 +142,11 @@
       ItemsSource="{Binding ActivityNoteViewModel.ActivityNotes, Mode=TwoWay}" SelectedItem="{Binding ActivityNoteViewModel.SelectedActivityNote, Mode=TwoWay}" SelectionChanged="ActList_SelectionChanged" BorderBrush="Transparent" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
                         <Style>
-                            <Setter Property="ListBoxItem.Background" Value="#C4E5D7"/>
+                            <Setter Property="ListBoxItem.Background" Value="{Binding Color}"/>
                             <Setter Property="ListBoxItem.Height" Value="100"/>
                             <Setter Property="ListBoxItem.Width" Value="100"/>
-                            <Setter Property="ListBoxItem.Margin" Value="3, 3, 3, 3"/>
+                            <Setter Property="ListBoxItem.Margin" Value="3,3,3,3"/>
+                            <Setter Property="ListBoxItem.HorizontalContentAlignment" Value="Center"/>
                         </Style>
                     </ListView.ItemContainerStyle>
                     <ListBox.ItemsPanel>
@@ -157,17 +156,23 @@
                     </ListBox.ItemsPanel>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel>
-                                <TextBlock Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <TextBlock Text="{Binding Location}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <TextBlock Text="{Binding Rating}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Time:" Margin="0,0,0,10" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                    <TextBlock Text="{Binding Hours}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                    <TextBlock Text=":" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                    <TextBlock Text="{Binding Minutes}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                </StackPanel>
-                            </StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*"/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="0.2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"  Width="90" Grid.Column="1" Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Grid.Row="1"  Width="90" Grid.Column="1" Text="{Binding Location}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                 <ScrollViewer Width="auto" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" > <TextBlock  Width="70" Text="{Binding Comment}" FontSize="10"  Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
+                                </ScrollViewer>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -182,8 +187,9 @@
       ItemsSource="{Binding FeedingNoteViewModel.FeedingNotes}" SelectedItem="{Binding FeedingNoteViewModel.SelectedFeedingNote, Mode=TwoWay}" BorderBrush="Transparent" SelectionChanged="FeedList_SelectionChanged" Background="Transparent"  HorizontalAlignment="Center" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListView.ItemContainerStyle>
                         <Style>
-                            <Setter Property="ListBoxItem.Background" Value="#FFCAD8"/>
+                            <Setter Property="ListBoxItem.Background" Value="#E2F5FC"/>
                             <Setter Property="ListBoxItem.Height" Value="100"/>
+                            <Setter Property="ListBoxItem.Opacity" Value="0.7"/>
                             <Setter Property="ListBoxItem.Width" Value="100"/>
                             <Setter Property="ListBoxItem.Margin" Value="3, 3, 3, 3"/>
                         </Style>
@@ -243,7 +249,7 @@
                             </TextBox>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
                                 <Label Content="Time" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                                <TextBox Margin="40,0,0,0" Background="#F0F0F0" Width="70" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
+                                <TextBox Margin="40,0,0,0.2" Background="#F0F0F0" Width="70" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" >
                                     <TextBox.Text>
                                         <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                             <Binding.ValidationRules>
@@ -264,7 +270,8 @@
                                 </TextBox>
                             </StackPanel>
                             <Label Content="Comment" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                            <TextBox Grid.Row="2" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
+                            <TextBox Grid.RowSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Auto"  Grid.Row="2" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3">
                                 <TextBox.Text>
                                     <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -274,7 +281,7 @@
                                 </TextBox.Text>
                             </TextBox>
                             <Label Content="Rating" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                            <Slider Grid.Row="3" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ActivityNoteViewModel.SelectedActivityNote.Rating, Mode=TwoWay}"></Slider>
+                            <!--<Slider Grid.Row="3" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ActivityNoteViewModel.SelectedActivityNote.Rating, Mode=TwoWay}"></Slider>-->
 
                         </Grid>
                         <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.DeleteActivityNoteCommand}" Grid.Column="2">

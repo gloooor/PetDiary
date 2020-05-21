@@ -1,5 +1,6 @@
 ﻿using LiveCharts;
 using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 using PetDiary.Command;
 using PetDiary.DataBase;
 using System;
@@ -26,31 +27,17 @@ namespace PetDiary.ViewModels
         }
 
         private ObservableCollection<Stat> _statistic;
-        public ChartValues<DateTimePoint> RawDataSeries {
-            get {
-                ChartValues<DateTimePoint> Values = new ChartValues<DateTimePoint>();
-                foreach (Stat el in Statistic)
-                {
-                    if (el.Weight > 0)
-                    {
-                        MessageBox.Show(el.Weight.ToString(), el.Date.ToString());
-                        Values.Add(new DateTimePoint(el.Date, el.Weight));
-                    }
-                }
-                return Values;
-            }
-        }
-
-
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
+        public SeriesCollection SeriesCollection { get; set; }
 
         public StatViewModel()
         {
             Statistic = new ObservableCollection<Stat>();
+           
         }
 
         private RelayCommand _addStatCommand;
@@ -60,14 +47,18 @@ namespace PetDiary.ViewModels
                   (_addStatCommand = new RelayCommand(obj =>
                   {
                       var item = ViewModel.ReportStatViewModel.Stat;
-                      StatDB.AddStat(item.Date, item.Weight, ViewModel.MainWindowViewModel.SelectedPet.Id);
-                      if (ViewModel.MainWindowViewModel.SelectedPet != null)
+                      if (item.Weight > 0)
                       {
-                          GetStatistic(ViewModel.MainWindowViewModel.SelectedPet.Id);
+                          StatDB.AddStat(item.Date, item.Weight, ViewModel.MainWindowViewModel.SelectedPet.Id);
+                          if (ViewModel.MainWindowViewModel.SelectedPet != null)
+                          {
+                              GetStatistic(ViewModel.MainWindowViewModel.SelectedPet.Id);
+                          }
                       }
                   }));
             }
         }
+
 
 
         public void GetStatistic(int petId)

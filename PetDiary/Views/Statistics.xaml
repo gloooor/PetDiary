@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
+        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
@@ -28,27 +29,17 @@
                     <RowDefinition Height="0.3*"/>
                 </Grid.RowDefinitions>
                 <Label Content="Statistic" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
-                <ListView Grid.Row="1" Grid.Column="2" x:Name="statList" 
-      ItemsSource="{Binding StatViewModel.Statistic}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding Weight}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <TextBlock  Text="{Binding Date}" FontSize="12"  Background="{x:Null}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+
                 <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <lvc:CartesianChart Grid.Row="3" Grid.Column="1" DataTooltip="{x:Null}">
-                    <lvc:CartesianChart.Series>
-                        <lvc:ScatterSeries Title="Raw Data" Values="{Binding StatViewModel.RawDataSeries}" />
-                    </lvc:CartesianChart.Series>
+                <lvc:CartesianChart Grid.Row="3" Grid.RowSpan="2" Grid.Column="1"  Series="{Binding StatViewModel.SeriesCollection}"  >
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis Title="Weight" LabelFormatter="{Binding StatViewModel.YFormatter}"></lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
                 <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/5.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
-                <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
-                    <Label HorizontalContentAlignment="Left" Content="Weight" VerticalContentAlignment="Bottom"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" Width="50" Height="20" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
+                <StackPanel Grid.Row="5" Margin="100,0,0,0" Grid.Column="1" Orientation="Horizontal">
+                    <Label HorizontalContentAlignment="Left" Content="Weight" VerticalContentAlignment="Center" Margin="0,19,0,-0.2"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Width="50" Height="30" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
                         <TextBox.Text>
                             <Binding Path="ReportStatViewModel.Weight" Mode="TwoWay" ValidatesOnExceptions="True"  UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -57,8 +48,8 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
+                    <Button  Width="70" HorizontalAlignment="Left" Content="Add" x:Name="butsavepet" Command="{Binding StatViewModel.AddStatCommand}" Margin="15,21,0,-0.2" Background="#B6E7C5" Foreground="Black" FontSize="10" FontFamily="PG Isadora Cyr Pro" Click="butsavepet_Click" Height="Auto" />
                 </StackPanel>
-                <Button Grid.Column="1" Grid.Row="5"  Width="70" HorizontalAlignment="Left" Content="Add" x:Name="butsavepet" Command="{Binding StatViewModel.AddStatCommand}" Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontSize="10" FontFamily="PG Isadora Cyr Pro" />
                 <Button Grid.Column="2" Grid.Row="5" x:Name="butcancelpet"  Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click" />
             </Grid>
         </Border>
