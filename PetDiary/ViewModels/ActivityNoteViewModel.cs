@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class ActivityNoteViewModel : INotifyPropertyChanged
+    public class ActivityNoteViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<ActivityNote> ActivityNotes {
+         public ObservableCollection<ActivityNote> ActivityNotes {
             get => _activityNotes;
             set {
                 _activityNotes = value;
@@ -25,18 +24,11 @@ namespace PetDiary.ViewModels
         private ObservableCollection<ActivityNote> _activityNotes;
         private readonly ActivityNoteDB _activityDB = new ActivityNoteDB();
 
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
         public ActivityNoteViewModel()
         {
             ActivityNotes = new ObservableCollection<ActivityNote>();
         }
-
+        #region Commands
         private RelayCommand _addActivityNoteCommand;
         public RelayCommand AddActivityCommand {
             get {
@@ -109,11 +101,14 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged("SelectedActivityNote");
             }
         }
+        #endregion
+        #region Methods
         public void GetPetActivityNotes(int petId)
         {
             ActivityNotes.Clear();
             var items = _activityDB.GetNotesByPetId(petId);
             items.ForEach(ActivityNotes.Add);
         }
+        #endregion
     }
 }

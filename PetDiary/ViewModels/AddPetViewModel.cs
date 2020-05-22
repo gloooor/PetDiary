@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class AddPetViewModel : INotifyPropertyChanged
+    public class AddPetViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Properties
         public Pet Pet { get; set; }
         public void InitPet(bool force = false)
         {
@@ -116,12 +116,6 @@ namespace PetDiary.ViewModels
                 }
             }
         }
-
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        #endregion
     }
 }

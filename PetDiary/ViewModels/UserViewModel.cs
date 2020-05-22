@@ -13,15 +13,18 @@ using System.Windows;
 
 namespace PetDiary.ViewModels
 {
-    public class UserViewModel : INotifyPropertyChanged
+    public class UserViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public User User {
             get => _user;
             set {
                 _user = value;
                 OnPropertyChanged(nameof(User));
             }
+        }
+        public UserViewModel()
+        {
+            UserList = new ObservableCollection<User>();
         }
 
         private User _user;
@@ -47,7 +50,7 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged("SelectedUser");
             }
         }
-
+        #region Commands
         private RelayCommand _addUserCommand;
         public RelayCommand AddUserCommand {
             get {
@@ -72,17 +75,6 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
-        public UserViewModel()
-        {
-            UserList = new ObservableCollection<User>();
-        }
-
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
+        #endregion
     }
 }

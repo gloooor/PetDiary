@@ -14,11 +14,8 @@ using System.Diagnostics;
 
 namespace PetDiary.ViewModels
 {
-    public class PetViewModel : INotifyPropertyChanged
+    public class PetViewModel : ViewModelBase
     {
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Pet> Pets {
             get => _pets;
             set {
@@ -28,22 +25,14 @@ namespace PetDiary.ViewModels
         }
 
         private ObservableCollection<Pet> _pets;
-        private readonly PetDB _petDB = new PetDB();
-       
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
-
+        
         public PetViewModel()
         {
             Pets = new ObservableCollection<Pet>();
         }
 
 
-
+        #region Commands
 
         private RelayCommand _addPetCommand;
         public RelayCommand AddPetCommand {
@@ -62,14 +51,15 @@ namespace PetDiary.ViewModels
                       var win = new MainWindow();
                       win.Show();
                       foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
-                      { if(System.Windows.Application.Current.Windows.Count>1)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
                               window.Close();
                       }
-                     
+
                   }));
             }
         }
-      
+
         private RelayCommand _deletePetCommand;
         public RelayCommand DeletePetCommand {
             get {
@@ -80,15 +70,15 @@ namespace PetDiary.ViewModels
                       {
                           PetDB.DeletePetById(ViewModel.MainWindowViewModel.SelectedPet.Id);
                           ViewModel.MainWindowViewModel.FilteredPets.Remove(ViewModel.MainWindowViewModel.SelectedPet);
-                          ViewModel.MainWindowViewModel.SelectedPet =  ViewModel.MainWindowViewModel.FilteredPets.FirstOrDefault();
+                          ViewModel.MainWindowViewModel.SelectedPet = ViewModel.MainWindowViewModel.FilteredPets.FirstOrDefault();
                           Pets.Remove(ViewModel.MainWindowViewModel.SelectedPet);
                       }
                   }));
             }
         }
-        private RelayCommand changePetCommand;
-        public RelayCommand ChangePetCommand => this.changePetCommand ??
-            (this.changePetCommand = new RelayCommand(obj =>
+        private RelayCommand _changePetCommand;
+        public RelayCommand ChangePetCommand => this._changePetCommand ??
+            (this._changePetCommand = new RelayCommand(obj =>
             {
                 var pet = ViewModel.MainWindowViewModel.SelectedPet;
                 PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
@@ -96,9 +86,9 @@ namespace PetDiary.ViewModels
             }
             ));
 
-            private RelayCommand changePetCancelCommand;
-        public RelayCommand ChangePetCancelCommand => this.changePetCancelCommand ??
-            (this.changePetCancelCommand = new RelayCommand(obj =>
+        private RelayCommand _changePetCancelCommand;
+        public RelayCommand ChangePetCancelCommand => this._changePetCancelCommand ??
+            (this._changePetCancelCommand = new RelayCommand(obj =>
             {
                 var pet = ViewModel.MainWindowViewModel.SelectedPet;
                 PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
@@ -112,7 +102,8 @@ namespace PetDiary.ViewModels
                 }
             }
             ));
-
+        #endregion
+        #region Methods
         public void GetUserPets(int userId)
         {
             Pets.Clear();
@@ -120,5 +111,6 @@ namespace PetDiary.ViewModels
             items.ForEach(Pets.Add);
             ViewModel.MainWindowViewModel.InitFilters();
         }
+        #endregion
     }
 }

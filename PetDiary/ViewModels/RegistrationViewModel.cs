@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class RegistrationViewModel
+    public class RegistrationViewModel: ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public bool IsValid {
             get => (Login != "" && Password != "");
         }
@@ -24,6 +23,7 @@ namespace PetDiary.ViewModels
                 User = new User();
             }
         }
+        #region Properties
         public string Login {
             get => User.Login;
             set {
@@ -55,7 +55,8 @@ namespace PetDiary.ViewModels
                 }
             }
         }
-
+        #endregion
+        #region Commands
         private RelayCommand _cancelRegistrationCommand;
         public RelayCommand CancelRegistrationCommand {
             get {
@@ -73,12 +74,7 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        #endregion
     }
 
 }

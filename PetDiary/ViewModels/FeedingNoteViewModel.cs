@@ -11,9 +11,8 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class FeedingNoteViewModel : INotifyPropertyChanged
+    public class FeedingNoteViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<FeedingNote> FeedingNotes {
             get => _feedingNotes;
             set {
@@ -22,16 +21,24 @@ namespace PetDiary.ViewModels
             }
         }
 
-        private ObservableCollection<FeedingNote> _feedingNotes;
-        private readonly FeedingNoteDB _feedingDB = new FeedingNoteDB();
-
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+        FeedingNote _selectedFeedingNote;
+        public FeedingNote SelectedFeedingNote {
+            get {
+                return _selectedFeedingNote;
+            }
+            set {
+                _selectedFeedingNote = value;
+                OnPropertyChanged("SelectedFeedingNote");
+            }
+        }
+        public FeedingNoteViewModel()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+            FeedingNotes = new ObservableCollection<FeedingNote>();
         }
 
+        private ObservableCollection<FeedingNote> _feedingNotes;
+        private readonly FeedingNoteDB _feedingDB = new FeedingNoteDB();
+        #region Commands
 
         private RelayCommand _addFeedingNoteCommand;
         public RelayCommand AddFeedingCommand {
@@ -92,29 +99,15 @@ namespace PetDiary.ViewModels
                 }
             }
             ));
-
-        FeedingNote _selectedFeedingNote;
-
-        public FeedingNote SelectedFeedingNote {
-            get {
-                return _selectedFeedingNote;
-            }
-
-            set {
-                _selectedFeedingNote = value;
-                OnPropertyChanged("SelectedFeedingNote");
-            }
-        }
-        public FeedingNoteViewModel()
-        {
-            FeedingNotes = new ObservableCollection<FeedingNote>();
-        }
+        #endregion
+        #region Methods
         public void GetPetFeedingNotes(int petId)
         {
             FeedingNotes.Clear();
             var items = _feedingDB.GetNotesByPetId(petId);
             items.ForEach(FeedingNotes.Add);
         }
+        #endregion
 
     }
 }

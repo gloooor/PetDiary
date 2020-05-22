@@ -13,7 +13,7 @@ using System.Windows.Data;
 
 namespace PetDiary.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel : ViewModelBase
     {
 
         public ObservableCollection<Pet> FilteredPets {
@@ -25,15 +25,7 @@ namespace PetDiary.ViewModels
         }
 
         private ObservableCollection<Pet> _filteredPets = new ObservableCollection<Pet>();
-
-        public void InitFilters()
-        {
-            OnFilterChanged(filter);
-        }
-
         private string filter = "";
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public string Filter {
             get { return this.filter; }
@@ -61,6 +53,11 @@ namespace PetDiary.ViewModels
             }
         }
 
+        #region Methods
+        public void InitFilters()
+        {
+            OnFilterChanged(filter);
+        }
         private void OnFilterChanged(string filter)
         {
             FilteredPets.Clear();
@@ -81,7 +78,8 @@ namespace PetDiary.ViewModels
             ViewModel.ActivityNoteViewModel.GetPetActivityNotes(SelectedPet.Id);
             ViewModel.FeedingNoteViewModel.GetPetFeedingNotes(SelectedPet.Id);
         }
-
+        #endregion
+        #region Commands
         private RelayCommand _cancelWindowCommand;
         public RelayCommand CancelWindowCommand {
             get {
@@ -221,11 +219,7 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
-
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        #endregion
+      
     }
 }

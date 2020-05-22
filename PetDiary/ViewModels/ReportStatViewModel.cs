@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class ReportStatViewModel : INotifyPropertyChanged
+    public class ReportStatViewModel : ViewModelBase
     {
         public Stat Stat { get; set; }
         public void InitStat(bool force = false)
@@ -18,6 +18,7 @@ namespace PetDiary.ViewModels
                 Stat = new Stat();
             }
         }
+        #region Properties
         public int Weight {
             get => this.Stat.Weight;
             set {
@@ -37,13 +38,6 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged(nameof(this.Date));
             }
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
+        #endregion
     }
 }

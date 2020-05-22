@@ -15,9 +15,8 @@ using System.Windows;
 
 namespace PetDiary.ViewModels
 {
-    public class StatViewModel : INotifyPropertyChanged
+    public class StatViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         public ObservableCollection<Stat> Statistic {
             get => _statistic;
             set {
@@ -27,11 +26,6 @@ namespace PetDiary.ViewModels
         }
 
         private ObservableCollection<Stat> _statistic;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
         public SeriesCollection SeriesCollection { get; set; }
 
         public StatViewModel()
@@ -39,6 +33,7 @@ namespace PetDiary.ViewModels
             Statistic = new ObservableCollection<Stat>();
            
         }
+        #region Commands
 
         private RelayCommand _addStatCommand;
         public RelayCommand AddStatCommand {
@@ -66,13 +61,14 @@ namespace PetDiary.ViewModels
             }
         }
 
-
-
+        #endregion
+        #region Methods
         public void GetStatistic(int petId)
         {
             Statistic.Clear();
             var items = StatDB.GetStatistic(petId);
             items.ForEach(Statistic.Add);
         }
+        #endregion
     }
 }

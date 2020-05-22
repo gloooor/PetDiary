@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PetDiary.ViewModels
 {
-    public class ReportActivityViewModel : INotifyPropertyChanged
+    public class ReportActivityViewModel : ViewModelBase
     {
         public ActivityNote Note { get; set; }
         public void InitNote(bool force = false)
@@ -18,6 +18,7 @@ namespace PetDiary.ViewModels
                 Note = new ActivityNote();
             }
         }
+        #region Properties
         public string Date {
             get => this.Note.Date;
             set {
@@ -91,13 +92,7 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged(nameof(this.Comment));
             }
         }
+        #endregion
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
     }
 }
