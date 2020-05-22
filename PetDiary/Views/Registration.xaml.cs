@@ -32,24 +32,7 @@ namespace PetDiary
             ViewModel.RegistrationViewModel.User.Password = txtpassword.Password;
         }
 
-        private void btnRegisterCancel_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new Login();
-            window.Show();
-            this.Close();
-        }
-
-        private void btnRegister_Click(object sender, RoutedEventArgs e)
-        {
-            if (!ViewModel.RegistrationViewModel.IsValid)
-            {
-                MessageBox.Show("Sanya privet");
-                return;
-            }
-            var window = new Login();
-            window.Show();
-            this.Close();
-        }
+      
 
         private void txtpassword_PasswordChanged(object sender, RoutedEventArgs e)
         {

@@ -107,8 +107,8 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Command="{Binding PetViewModel.ChangePetCommand}" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" Content="Save" Height="Auto"/>
-                        <Button Grid.Column="1" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro"  Content="Cancel" Height="Auto" Click="Button_Click"/>
+                        <Button Grid.Column="0" Command="{Binding PetViewModel.ChangePetCancelCommand}" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" Content="Save" Height="Auto"/>
+                        <Button Grid.Column="1" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro"  Content="Cancel" Height="Auto"/>
                     </Grid>
                 </Grid>
             </Grid>

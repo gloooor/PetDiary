@@ -1,4 +1,5 @@
-﻿using PetDiary.Models;
+﻿using PetDiary.Command;
+using PetDiary.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,6 +56,23 @@ namespace PetDiary.ViewModels
             }
         }
 
+        private RelayCommand _cancelRegistrationCommand;
+        public RelayCommand CancelRegistrationCommand {
+            get {
+                return _cancelRegistrationCommand ??
+                  (_cancelRegistrationCommand = new RelayCommand(obj =>
+                  {
+                      var win = new Login();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {

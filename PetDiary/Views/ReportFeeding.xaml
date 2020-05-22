@@ -72,8 +72,8 @@
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.FoodPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
 
-                <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" Click="butcancelpet_Click" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
-                <Button Grid.Column="2" Grid.Row="6" Margin="20,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Click="butcancelpet_Click"/>
+                <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Grid.Row="6" Margin="20,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"/>
             </Grid>
         </Border>
     </Grid>

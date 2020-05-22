@@ -50,6 +50,14 @@ namespace PetDiary.ViewModels
                           ActivityNoteDB.AddNote(note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating, ViewModel.MainWindowViewModel.SelectedPet.Id);
                           GetPetActivityNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
                       }
+                      var win = new MainWindow();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
                   }));
             }
         }

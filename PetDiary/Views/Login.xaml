@@ -16,8 +16,8 @@
                 <TextBox x:Name="txtlogin" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" Margin="1,0,-0.8,0"  />
                 <Label Content="Password" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
                 <PasswordBox AllowDrop="True" x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" />
-                <Button x:Name="butLogin" Click="butLogin_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Sign In" Margin="60,15,60, 0" Height="28"/>
-                <Button x:Name="butRegister" Click="butRegister_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Log In" Margin="60,16,60,0" Height="28"/>
+                <Button x:Name="butLogin" Background="#FFCE8A8A" Foreground="#FFFFFF" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Sign In" Margin="60,15,60, 0" Height="28" Click="butLogin_Click_1"/>
+                <Button x:Name="butRegister" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Log In" Margin="60,16,60,0" Height="28" Click="butRegister_Click_1"/>
             </StackPanel>
         </Border>
     </Grid>

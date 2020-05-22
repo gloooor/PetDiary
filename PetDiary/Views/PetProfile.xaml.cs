@@ -32,12 +32,5 @@ namespace PetDiary.Views
             sexlist.ItemsSource = myGender;
             DataContext = ApplicationContext.Get();
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
-        }
     }
 }

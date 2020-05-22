@@ -41,31 +41,10 @@ namespace PetDiary
             ViewModel.ActivityNoteViewModel.GetPetActivityNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
             ViewModel.FeedingNoteViewModel.GetPetFeedingNotes(ViewModel.MainWindowViewModel.SelectedPet.Id);
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new AddPet();
-            window.Show();
-            this.Close();
-        }
-
-        private void del(object sender, RoutedEventArgs e)
-        {
-            var window = new Login();
-            window.Show();
-            this.Close();
-        }
-
-        private void clo(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
         private void petsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
             {
-                //ViewModel.MainWindowViewModel.SelectedPet = null;
                 return;
             }
             var index = petsList.SelectedIndex;
@@ -90,7 +69,6 @@ namespace PetDiary
                 index = 0;
             }
             ViewModel.ActivityNoteViewModel.SelectedActivityNote = ViewModel.ActivityNoteViewModel.ActivityNotes[index];
-           // RefreshNotes();
         }
         private void FeedList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -105,35 +83,6 @@ namespace PetDiary
                 index = 0;
             }
             ViewModel.FeedingNoteViewModel.SelectedFeedingNote = ViewModel.FeedingNoteViewModel.FeedingNotes[index];
-            // RefreshNotes();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var window = new ReporlActivity();
-            window.Show();
-            this.Close();
-        }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            var window = new ReportFeeding();
-            window.Show();
-            this.Close();
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            var window = new Statistics();
-            window.Show();
-            this.Close();
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            var window = new PetProfile();
-            window.Show();
-            this.Close();
         }
     }
 }

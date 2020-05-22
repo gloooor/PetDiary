@@ -27,12 +27,5 @@ namespace PetDiary
             InitializeComponent();
             DataContext = ApplicationContext.Get();
         }
-
-        private void butcancelpet_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
-        }
     }
 }

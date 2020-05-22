@@ -35,9 +35,7 @@ namespace PetDiary
             UserViewModel = ViewModel.UserViewModel;
         }
 
-
-
-        private void butLogin_Click(object sender, RoutedEventArgs e)
+        private void butLogin_Click_1(object sender, RoutedEventArgs e)
         {
             var hash = DB.Hash(txtpassword.Password);
             var user = UserDB.GetUserByLogin(txtlogin.Text);
@@ -52,9 +50,10 @@ namespace PetDiary
             var window = new MainWindow();
             window.Show();
             this.Close();
+
         }
 
-        private void butRegister_Click(object sender, RoutedEventArgs e)
+        private void butRegister_Click_1(object sender, RoutedEventArgs e)
         {
             Registration Menu = new Registration();
             Menu.Show();

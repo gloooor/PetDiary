@@ -27,8 +27,8 @@
                     <Label Content="Password"  Width="70" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
                     <PasswordBox  Width="130"  x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" PasswordChanged="txtpassword_PasswordChanged"/>
                 </StackPanel>
-                <Button x:Name="btnRegister" Command="{Binding UserViewModel.AddUserCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Height="28" Width="120" Margin="10,10,10,10" Click="btnRegister_Click"/>
-                <Button x:Name="btnRegisterCancel" Click="btnRegisterCancel_Click" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Width="120" Height="28"/>
+                <Button Command="{Binding UserViewModel.AddUserCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Height="28" Width="120" Margin="10,10,10,10"/>
+                <Button Command="{Binding RegistrationViewModel.CancelRegistrationCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Width="120" Height="28"/>
             </StackPanel>
         </Border>
 

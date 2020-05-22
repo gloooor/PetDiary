@@ -32,17 +32,5 @@ namespace PetDiary
             ViewModel.AddPetViewModel.InitPet(true);
             DataContext = ApplicationContext.Get();
         }
-
-        private void butcancelpet_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void txtbreed_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

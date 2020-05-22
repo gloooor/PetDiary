@@ -12,8 +12,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Wpf;
 
@@ -52,22 +50,6 @@ namespace PetDiary
 
             Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             YFormatter = value => value.ToString("C");
-        }
-
-   
-
-        private void butcancelpet_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
-        }
-
-        private void butsavepet_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
         }
     }
 }

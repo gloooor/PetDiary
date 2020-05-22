@@ -107,8 +107,8 @@
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.ActPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
 
-                <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#B6E7C5" HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Click="butcancelpet_Click" Content="Save"  />
-                <Button Grid.Column="2" Grid.Row="6" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Click="butcancelpet_Click" Margin="20,0,0,0"/>
+                <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#B6E7C5" HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Grid.Row="6" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Margin="20,0,0,0"/>
             </Grid>
         </Border>
     </Grid>

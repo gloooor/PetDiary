@@ -1,4 +1,6 @@
-﻿using PetDiary.Models;
+﻿using PetDiary.Command;
+using PetDiary.Models;
+using PetDiary.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -78,6 +80,146 @@ namespace PetDiary.ViewModels
             }
             ViewModel.ActivityNoteViewModel.GetPetActivityNotes(SelectedPet.Id);
             ViewModel.FeedingNoteViewModel.GetPetFeedingNotes(SelectedPet.Id);
+        }
+
+        private RelayCommand _cancelWindowCommand;
+        public RelayCommand CancelWindowCommand {
+            get {
+                return _cancelWindowCommand ??
+                  (_cancelWindowCommand = new RelayCommand(obj =>
+                  {
+                      var win = new MainWindow();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
+        private RelayCommand _openAddPetCommand;
+        public RelayCommand OpenAddPetCommand {
+            get {
+                return _openAddPetCommand ??
+                  (_openAddPetCommand = new RelayCommand(obj =>
+                  {
+                      var win = new AddPet();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
+        private RelayCommand _openReportFeedingCommand;
+        public RelayCommand OpenReportFeedingCommand {
+            get {
+                return _openReportFeedingCommand ??
+                  (_openReportFeedingCommand = new RelayCommand(obj =>
+                  {
+                      var win = new ReportFeeding();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
+        private RelayCommand _openReportActivityCommand;
+        public RelayCommand OpenReportActivityCommand {
+            get {
+                return _openReportActivityCommand ??
+                  (_openReportActivityCommand = new RelayCommand(obj =>
+                  {
+                      var win = new ReporlActivity();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
+        private RelayCommand _openStatisticCommand;
+        public RelayCommand OpenStatisticCommand {
+            get {
+                return _openStatisticCommand ??
+                  (_openStatisticCommand = new RelayCommand(obj =>
+                  {
+                      var win = new Statistics();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
+        private RelayCommand _openProfileCommand;
+        public RelayCommand OpenProfileCommand {
+            get {
+                return _openProfileCommand ??
+                  (_openProfileCommand = new RelayCommand(obj =>
+                  {
+                      var win = new PetProfile();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+        private RelayCommand _openLogInCommand;
+        public RelayCommand OpenLogInCommand {
+            get {
+                return _openLogInCommand ??
+                  (_openLogInCommand = new RelayCommand(obj =>
+                  {
+                      var win = new Login();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+        private RelayCommand _closeCommand;
+        public RelayCommand CloseCommand {
+            get {
+                return _closeCommand ??
+                  (_closeCommand = new RelayCommand(obj =>
+                  {
+
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          window.Close();
+                      }
+
+                  }));
+            }
         }
 
         public void OnPropertyChanged([CallerMemberName]string prop = "")

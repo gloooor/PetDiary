@@ -60,12 +60,12 @@
                 <ColumnDefinition Width="0.2*"/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Click="Button_Click" >Add Pet</Button>
-            <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Click="Button_Click_1" >Add Activity Note</Button>
-            <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Click="Button_Click_2" Grid.ColumnSpan="2" Margin="2.4,0,151.2,0" >Add Feeding Note</Button>
-            <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Click="Button_Click_3">Stat</Button>
-            <Button Grid.Column="4" Style="{StaticResource MenuButtons}" Click="Button_Click_4">Profile</Button>
-            <Button Grid.Column="5" Style="{StaticResource MenuButtons}" Click="del" >Log out</Button>
+            <Button Grid.Column="0" Style="{StaticResource MenuButtons}" Command="{Binding MainWindowViewModel.OpenAddPetCommand}" >Add Pet</Button>
+            <Button Grid.Column="1" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenReportActivityCommand}" >Add Activity Note</Button>
+            <Button Grid.Column="2" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenReportFeedingCommand}" Grid.ColumnSpan="2" Margin="2.4,0,151.2,0" >Add Feeding Note</Button>
+            <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenStatisticCommand}">Stat</Button>
+            <Button Grid.Column="4" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenProfileCommand}">Profile</Button>
+            <Button Grid.Column="5" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenLogInCommand}" >Log out</Button>
             <Button Grid.Column="6" Style="{StaticResource AboutButtons}" Grid.ColumnSpan="2" Margin="6.2,0,40.6,0">
                 <TextBlock Text="About" >
                     <TextBlock.LayoutTransform>
@@ -73,7 +73,7 @@
                     </TextBlock.LayoutTransform>
                 </TextBlock>
             </Button>
-            <Button Grid.Column="7" Style="{StaticResource AboutButtons}" Click="clo">
+            <Button Grid.Column="7" Style="{StaticResource AboutButtons}" Command="{Binding  MainWindowViewModel.CloseCommand}">
                 <Image Source="pack://siteoforigin:,,,\images\icon.png" />
             </Button>
         </Grid>

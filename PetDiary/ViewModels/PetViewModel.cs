@@ -59,10 +59,17 @@ namespace PetDiary.ViewModels
                       {
                           GetUserPets(ViewModel.UserViewModel.User.Id);
                       }
+                      var win = new MainWindow();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      { if(System.Windows.Application.Current.Windows.Count>1)
+                              window.Close();
+                      }
+                     
                   }));
             }
         }
-
+      
         private RelayCommand _deletePetCommand;
         public RelayCommand DeletePetCommand {
             get {
@@ -85,6 +92,24 @@ namespace PetDiary.ViewModels
             {
                 var pet = ViewModel.MainWindowViewModel.SelectedPet;
                 PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
+
+            }
+            ));
+
+            private RelayCommand changePetCancelCommand;
+        public RelayCommand ChangePetCancelCommand => this.changePetCancelCommand ??
+            (this.changePetCancelCommand = new RelayCommand(obj =>
+            {
+                var pet = ViewModel.MainWindowViewModel.SelectedPet;
+                PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
+
+                var win = new MainWindow();
+                win.Show();
+                foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                {
+                    if (System.Windows.Application.Current.Windows.Count > 1)
+                        window.Close();
+                }
             }
             ));
 
