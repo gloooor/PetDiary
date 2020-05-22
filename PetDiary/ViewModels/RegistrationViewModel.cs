@@ -37,7 +37,7 @@ namespace PetDiary.ViewModels
                 }
             }
         }
-     
+
 
 
         public string Password {

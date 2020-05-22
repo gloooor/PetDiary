@@ -40,7 +40,7 @@ namespace PetDiary.DataBase
             }
 
         }
-        public User GetUserByLogin(string login)
+        public static User GetUserByLogin(string login)
         {
 
             try

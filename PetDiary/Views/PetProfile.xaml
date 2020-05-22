@@ -33,7 +33,7 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/8.gif" Height="100" Grid.Column="2" Grid.Row="1"/>
+                    <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.ProfPic}" Height="100" Grid.Column="2" Grid.Row="1"/>
 
                     <Label HorizontalContentAlignment="Left" Content="Name" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom"/>
                     <TextBox  Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">

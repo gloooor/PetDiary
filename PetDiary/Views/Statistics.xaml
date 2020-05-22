@@ -36,7 +36,7 @@
                         <lvc:Axis Title="Weight" LabelFormatter="{Binding StatViewModel.YFormatter}"></lvc:Axis>
                     </lvc:CartesianChart.AxisY>
                 </lvc:CartesianChart>
-                <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/5.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
+                <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.StaticPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
                 <StackPanel Grid.Row="5" Margin="100,0,0,0" Grid.Column="1" Orientation="Horizontal">
                     <Label HorizontalContentAlignment="Left" Content="Weight" VerticalContentAlignment="Center" Margin="0,19,0,-0.2"/>
                     <TextBox Grid.Row="4" Grid.Column="1" Width="50" Height="30" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">

@@ -105,7 +105,7 @@
                         <Slider Grid.Row="8" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ReportActivityViewModel.Rating, Mode=TwoWay}"></Slider>
                     </Grid>
                 </Border>
-                <Image  gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/3.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
+                <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.ActPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
 
                 <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#B6E7C5" HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Click="butcancelpet_Click" Content="Save"  />
                 <Button Grid.Column="2" Grid.Row="6" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Click="butcancelpet_Click" Margin="20,0,0,0"/>

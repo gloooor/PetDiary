@@ -35,21 +35,21 @@ namespace PetDiary
             UserViewModel = ViewModel.UserViewModel;
         }
 
-       
-       
+
+
         private void butLogin_Click(object sender, RoutedEventArgs e)
         {
             var hash = DB.Hash(txtpassword.Password);
-            var user = _userDB.GetUserByLogin(txtlogin.Text);
+            var user = UserDB.GetUserByLogin(txtlogin.Text);
 
-            if (user.Password!=hash)
+            if (user.Password != hash)
             {
                 MessageBox.Show("невалидный юзер");
-                return; 
+                return;
             }
             UserViewModel.User = user;
             ViewModel.PetViewModel.GetUserPets(ViewModel.UserViewModel.User.Id);
-            var window= new MainWindow();
+            var window = new MainWindow();
             window.Show();
             this.Close();
         }

@@ -15,12 +15,12 @@ namespace PetDiary.ViewModels
     public class UserViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public User User { 
-            get => _user; 
+        public User User {
+            get => _user;
             set {
                 _user = value;
                 OnPropertyChanged(nameof(User));
-            } 
+            }
         }
 
         private User _user;

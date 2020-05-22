@@ -25,7 +25,7 @@ namespace PetDiary
         public AddPet()
         {
             InitializeComponent();
-            myTypes = new List<string> { "Dog", "Cat", "Parrot", "Humster" };
+            myTypes = new List<string> { "Dog", "Cat", "Rabbit", "Hamster" };
             myGender = new List<string> { "Male", "Female"};
             typelist.ItemsSource = myTypes;
             sexlist.ItemsSource = myGender;

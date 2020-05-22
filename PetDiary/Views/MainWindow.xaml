@@ -74,7 +74,7 @@
                 </TextBlock>
             </Button>
             <Button Grid.Column="7" Style="{StaticResource AboutButtons}" Click="clo">
-                <Image Source="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\images\icon.png" />
+                <Image Source="pack://siteoforigin:,,,\images\icon.png" />
             </Button>
         </Grid>
 
@@ -112,7 +112,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-            <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary/images/6.gif" Height="100"/>
+            <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/images/6.gif" Height="100"/>
             <Button Grid.Row="3" Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
             </Button>
 
