@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PetDiary.ViewModels
 {
@@ -47,6 +48,12 @@ namespace PetDiary.ViewModels
                   (_addFeedingNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportFeedingViewModel.FeedingNote;
+
+                      if (note.Date == "")
+                      {
+                          MessageBox.Show("Pick the date");
+                          return;
+                      }
                       FeedingNoteDB.AddNote(note.Date, note.WetFood, note.DryFood, note.Meat, note.Medicines, note.Other, ViewModel.MainWindowViewModel.SelectedPet.Id);
                       if (ViewModel.MainWindowViewModel.SelectedPet != null)
                       {
@@ -59,7 +66,6 @@ namespace PetDiary.ViewModels
                           if (System.Windows.Application.Current.Windows.Count > 1)
                               window.Close();
                       }
-
                   }));
             }
         }

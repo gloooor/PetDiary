@@ -23,14 +23,8 @@ namespace PetDiary.ViewModels
             get => this.FeedingNote.Date;
             set {
                 InitNote();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    FeedingNote.Date = value;
-                    OnPropertyChanged(nameof(this.Date));
-                }
-            }
+                FeedingNote.Date = value;
+                    OnPropertyChanged(nameof(this.Date));            }
         }
 
         public bool WetFood {
@@ -67,7 +61,6 @@ namespace PetDiary.ViewModels
                 OnPropertyChanged(nameof(this.Medicines));
             }
         }
-
         public bool Other {
             get => this.FeedingNote.Other;
             set {

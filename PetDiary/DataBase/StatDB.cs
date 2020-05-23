@@ -25,7 +25,7 @@ namespace PetDiary.DataBase
                 {
                     while (rdr.Read())
                     {
-                        list.Add(new Stat(Convert.ToDateTime(rdr["Date"]), (int)rdr["Weight"], (int)rdr["PetId"]));
+                        list.Add(new Stat(Convert.ToDateTime(rdr["Date"]), (double)rdr["Weight"], (int)rdr["PetId"]));
                     }
                     return list;
                 }
@@ -40,7 +40,7 @@ namespace PetDiary.DataBase
                 DB.Close_DB_Connection();
             }
         }
-        static public void AddStat(DateTime Date, int Weight, int OwnerId)
+        static public void AddStat(DateTime Date, double Weight, int OwnerId)
         {
             try
             {

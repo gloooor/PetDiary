@@ -9,7 +9,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:toolkit="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
-        Title="MainWindow" Background="Ivory" MaxHeight="700" MinHeight="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Background="Ivory"  MaxHeight="700" MinHeight="700" Height="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MenuButtons">
             <Setter Property="Background" Value="#ffbfa6"/>
@@ -25,6 +25,7 @@
         <Style TargetType="Button" x:Key="DeleteButtons">
             <Setter Property="Width" Value="Auto"/>
             <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Background" Value="#FFE2D7"/>
         </Style>
         <Style TargetType="TextBlock" x:Key="DogList">
             <Setter Property="Background" Value="#D9E1CA"/>
@@ -66,7 +67,7 @@
             <Button Grid.Column="3" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenStatisticCommand}">Stat</Button>
             <Button Grid.Column="4" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenProfileCommand}">Profile</Button>
             <Button Grid.Column="5" Style="{StaticResource MenuButtons}" Command="{Binding  MainWindowViewModel.OpenLogInCommand}" >Log out</Button>
-            <Button Grid.Column="6" Style="{StaticResource AboutButtons}" Grid.ColumnSpan="2" Margin="6.2,0,40.6,0">
+            <Button Grid.Column="6" Style="{StaticResource AboutButtons}"  Command="{Binding  MainWindowViewModel.AboutCommand}" Grid.ColumnSpan="2" Margin="6.2,0,40.6,0">
                 <TextBlock Text="About" >
                     <TextBlock.LayoutTransform>
                         <RotateTransform Angle="90" />
@@ -80,7 +81,7 @@
 
         <Grid Grid.Column="0"  Grid.Row="1">
             <Grid.Background >
-                <SolidColorBrush Color="#FFE2D7"/>
+                <SolidColorBrush Color="#505050"/>
             </Grid.Background>
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -102,12 +103,7 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Name}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Age}" FontSize="12"  Background="{x:Null}"/>
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Sex}" FontSize="12" Background="{x:Null}"/>
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Breed}" FontSize="12" Background="{x:Null}"/>
-                            </StackPanel>
+                            <TextBlock Style="{StaticResource DogList}" Text="{Binding Name}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -120,7 +116,7 @@
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="170"/>
+                <RowDefinition Height="210"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" >
                 <Grid.ColumnDefinitions>
@@ -157,21 +153,14 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="0.2*"/>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="0.2*"/>
-                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.Row="0"  Width="90" Grid.Column="1" Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
-                                <TextBlock Grid.Row="1"  Width="90" Grid.Column="1" Text="{Binding Location}" FontSize="10" Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                 <ScrollViewer Width="auto" Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" > <TextBlock  Width="70" Text="{Binding Comment}" FontSize="10"  Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
-                                </ScrollViewer>
+                                <TextBlock Grid.Row="0"  Width="90" Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Grid.Row="1" Grid.RowSpan="3" Width="70" Text="{Binding Comment}" FontSize="10"  Opacity="0.6" FontWeight="DemiBold" Background="{x:Null}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -202,7 +191,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource DogList}" Text="{Binding Id}" FontSize="16" FontWeight="DemiBold" Background="{x:Null}"/>
+                                <TextBlock Grid.Row="0"  Width="90" Grid.Column="1" Text="{Binding Path=Date, StringFormat='{}{0: dd/MM/yyyy}'}" FontSize="13" Opacity="0.8" VerticalAlignment="Top" FontWeight="DemiBold" Background="{x:Null}"/>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -233,9 +222,10 @@
                                 <RowDefinition/>
                                 <RowDefinition/>
                                 <RowDefinition/>
+                                <RowDefinition/>
                             </Grid.RowDefinitions>
-                            <Label Content="Date" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                            <DatePicker Grid.Column="2" Grid.Row="4" Height="auto">
+                            <Label Content="Date" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                            <DatePicker Grid.Column="2" Grid.Row="5" Height="auto">
                                 <DatePicker.Text>
                                     <Binding Path="ActivityNoteViewModel.SelectedActivityNote.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
@@ -280,8 +270,8 @@
                                     </Binding>
                                 </TextBox.Text>
                             </TextBox>
-                            <Label Content="Rating" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
-                            <!--<Slider Grid.Row="3" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ActivityNoteViewModel.SelectedActivityNote.Rating, Mode=TwoWay}"></Slider>-->
+                            <Label Content="Rating" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"/>
+                            <Slider Grid.Row="4" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ActivityNoteViewModel.SelectedActivityNote.Rating, Mode=TwoWay}"></Slider>
 
                         </Grid>
                         <Button Height="auto" Style="{StaticResource DeleteButtons}" Command="{Binding ActivityNoteViewModel.DeleteActivityNoteCommand}" Grid.Column="2">

@@ -6,18 +6,29 @@
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
         Title="Login" 
-         Height="360" Width="320" WindowStyle="None"  AllowsTransparency = "true" Background="Transparent" WindowStartupLocation="CenterScreen">
+         Height="400" Width="320" WindowStyle="None"  AllowsTransparency = "true" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid >
-        <Border Background="#FFF" CornerRadius="20" Margin="20,20,20,30">
+        <Border Background="#3F3F3F" CornerRadius="20" Margin="20,20,20,30">
             <StackPanel Margin="15,15,15,20">
-                <Label Content="LOGIN" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center" Width="91" VerticalContentAlignment="Bottom" Height="60"/>
+                <Label Content="LOGIN" Foreground="Wheat" Margin="0,20,0,15" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  VerticalContentAlignment="Bottom"/>
                 <Separator/>
                 <Label Content="Login"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"  Height="28"/>
-                <TextBox x:Name="txtlogin" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3" Margin="1,0,-0.8,0"  />
-                <Label Content="Password" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
-                <PasswordBox AllowDrop="True" x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" />
-                <Button x:Name="butLogin" Background="#FFCE8A8A" Foreground="#FFFFFF" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Sign In" Margin="60,15,60, 0" Height="28" Click="butLogin_Click_1"/>
-                <Button x:Name="butRegister" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Log In" Margin="60,16,60,0" Height="28" Click="butRegister_Click_1"/>
+               <TextBox Foreground="Wheat" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox.Text>
+                        <Binding Path="RegistrationViewModel.Login" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <Label Margin="0, 20,0,0" Content="Password" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
+                <PasswordBox AllowDrop="True" PasswordChanged="pwBoxUser_PasswordChanged" Foreground="Wheat" FontSize="18" />
+                <TextBox Height="1" Foreground="Wheat"  Name="MD5pw"  VerticalAlignment="Top" Text="{Binding RegistrationViewModel.Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+
+                <Button Command="{Binding RegistrationViewModel.RegistrationCommand}" Background="Wheat" Foreground="#3F3F3F" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Sign In" Margin="60,15,60, 0" Height="28"/>
+                <Button Command="{Binding RegistrationViewModel.OpenRegistrationCommand}" Background="Wheat" Foreground="#3F3F3F" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Log In" Margin="60,16,60,0" Height="28" />
             </StackPanel>
         </Border>
     </Grid>

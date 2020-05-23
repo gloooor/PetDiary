@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,9 +29,24 @@ namespace PetDiary
             myTypes = new List<string> { "Dog", "Cat", "Rabbit", "Hamster" };
             myGender = new List<string> { "Male", "Female"};
             typelist.ItemsSource = myTypes;
+            typelist.SelectedItem = myTypes[0];
             sexlist.ItemsSource = myGender;
+            sexlist.SelectedItem = myGender[0];
             ViewModel.AddPetViewModel.InitPet(true);
             DataContext = ApplicationContext.Get();
+        }
+
+
+        private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

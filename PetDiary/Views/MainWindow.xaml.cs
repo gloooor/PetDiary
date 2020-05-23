@@ -28,8 +28,8 @@ namespace PetDiary
         public MainWindow()
         {
             InitializeComponent();
+            ViewModel.PetViewModel.GetUserPets(ViewModel.UserViewModel.User.Id);
             RefreshNotes();
-
             DataContext = ApplicationContext.Get();
         }
         private void RefreshNotes()

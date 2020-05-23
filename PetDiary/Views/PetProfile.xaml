@@ -6,7 +6,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
-        Title="Activity" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Activity" WindowStyle="None"  AllowsTransparency = "true" Height="460" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
   
     <Grid>
         <Border Background="#F9FADC" CornerRadius="20" Margin="20,20,20,30">
@@ -34,9 +34,14 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.ProfPic}" Height="100" Grid.Column="2" Grid.Row="1"/>
-
+                    <Border Grid.Column="1" Grid.Row="1" Background="#505050" CornerRadius="10" Height="50">
+                        <StackPanel>
+                            <Label Foreground="Wheat" Content="Hi, " HorizontalContentAlignment="Center"></Label>
+                            <Label Foreground="Wheat" Content="{Binding UserViewModel.User.Login}" HorizontalContentAlignment="Center"></Label>
+                        </StackPanel>
+                    </Border>
                     <Label HorizontalContentAlignment="Left" Content="Name" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom"/>
-                    <TextBox  Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox  Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" PreviewTextInput="TextBox_PreviewTextInput">
                         <TextBox.Text>
                             <Binding Path="MainWindowViewModel.SelectedPet.Name" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -46,7 +51,7 @@
                         </TextBox.Text>
                     </TextBox>
                     <Label Content="Breed" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                    <TextBox Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" PreviewTextInput="TextBox_PreviewTextInput"  FontSize="12" BorderBrush="#FFABADB3">
                         <TextBox.Text>
                             <Binding Path="MainWindowViewModel.SelectedPet.Breed" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -56,7 +61,7 @@
                         </TextBox.Text>
                     </TextBox>
                     <Label Content="Age" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                    <TextBox Grid.Row="4" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox Grid.Row="4" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="12" BorderBrush="#FFABADB3" PreviewTextInput="TextBox_PreviewTextInput_1">
                         <TextBox.Text>
                             <Binding Path="MainWindowViewModel.SelectedPet.Age" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                 <Binding.ValidationRules>
@@ -107,8 +112,8 @@
                             <ColumnDefinition/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button Grid.Column="0" Command="{Binding PetViewModel.ChangePetCancelCommand}" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" Content="Save" Height="Auto"/>
-                        <Button Grid.Column="1" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro"  Content="Cancel" Height="Auto"/>
+                        <Button Grid.Column="0" Command="{Binding PetViewModel.ChangePetCancelCommand}" Background="#505050" Foreground="Wheat"  FontFamily="PG Isadora Cyr Pro" Content="Save" Height="Auto"/>
+                        <Button Grid.Column="1" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#505050" Foreground="Wheat" FontFamily="PG Isadora Cyr Pro"  Content="Cancel" Height="Auto"/>
                     </Grid>
                 </Grid>
             </Grid>

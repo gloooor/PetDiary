@@ -30,7 +30,7 @@
                 <Label Content="Report Note about feeding" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
 
                 <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Border Grid.Row="3" Background="#DAE2F3" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
+                <Border Grid.Row="3" Background="#505050" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
@@ -48,7 +48,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="1" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
+                        <Label Content="Date" Grid.Row="6" Grid.Column="1"  Foreground="Wheat" VerticalContentAlignment="Bottom" HorizontalContentAlignment="Left"  Height="28"/>
                         <DatePicker Grid.Column="2" Grid.Row="6" Height="auto">
                             <DatePicker.Text>
                                 <Binding Path="ReportFeedingViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -58,22 +58,22 @@
                                 </Binding>
                             </DatePicker.Text>
                         </DatePicker>
-                        <Label HorizontalContentAlignment="Left" Content="WetFood" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <Label HorizontalContentAlignment="Left"  Foreground="Wheat" Content="WetFood" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
                         <CheckBox x:Name="wetcheck" Grid.Row="1" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.WetFood}" />
-                        <Label HorizontalContentAlignment="Left" Content="DryFood" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <Label HorizontalContentAlignment="Left"  Foreground="Wheat" Content="DryFood" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
                         <CheckBox x:Name="drycheck" Grid.Row="2" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.DryFood}" />
-                        <Label HorizontalContentAlignment="Left" Content="Meat" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <Label HorizontalContentAlignment="Left"   Foreground="Wheat" Content="Meat" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
                         <CheckBox x:Name="meatcheck" Grid.Row="3" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Meat}" />
-                        <Label HorizontalContentAlignment="Left" Content="Medicines" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <Label HorizontalContentAlignment="Left" Foreground="Wheat" Content="Medicines" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
                         <CheckBox x:Name="medcheck" Grid.Row="4" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Medicines}" />
-                        <Label HorizontalContentAlignment="Left" Content="Other" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
+                        <Label HorizontalContentAlignment="Left"  Foreground="Wheat" Content="Other" Grid.Row="5" Grid.Column="1" VerticalContentAlignment="Bottom"  Height="28"/>
                         <CheckBox x:Name="othercheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding ReportFeedingViewModel.Other}" />
                     </Grid>
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.FoodPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
 
-                <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
-                <Button Grid.Column="2" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Grid.Row="6" Margin="20,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"/>
+                <Button Grid.Column="2" Grid.Row="5"  Margin="20,0,0,0" Command="{Binding FeedingNoteViewModel.AddFeedingCommand}"  Background="#505050" Foreground="Wheat" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Grid.Row="6" Margin="20,0,0,0" Background="#505050" Foreground="Wheat" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"/>
             </Grid>
         </Border>
     </Grid>

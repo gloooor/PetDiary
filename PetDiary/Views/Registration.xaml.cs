@@ -29,14 +29,16 @@ namespace PetDiary
 
             ViewModel.RegistrationViewModel.InitUser(true);
             DataContext = ApplicationContext.Get();
-            ViewModel.RegistrationViewModel.User.Password = txtpassword.Password;
         }
 
-      
-
-        private void txtpassword_PasswordChanged(object sender, RoutedEventArgs e)
+        private void pwBoxUser2_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            ViewModel.RegistrationViewModel.Password = txtpassword.Password;
+            var pBox = sender as PasswordBox;
+            string blank = pBox.Password;
+            RegistrationViewModel.counter = blank.Length;
+            var sMD6 = DB.Hash(blank);
+            blank = "";
+            MD6pw.Text = sMD6;
         }
     }
 }

@@ -102,7 +102,8 @@ namespace PetDiary.DataBase
                     var list = new List<FeedingNote>();
                     while (rdr.Read())
                     {
-                        list.Add(new FeedingNote((int)rdr["Id"], rdr["Date"].ToString(), (bool)rdr["WetFood"], (bool)rdr["DryFood"], (bool)rdr["Meat"],
+                        var date = DateTime.Parse(rdr["Date"].ToString()).ToString("dd/MM/yyyy");
+                        list.Add(new FeedingNote((int)rdr["Id"], date, (bool)rdr["WetFood"], (bool)rdr["DryFood"], (bool)rdr["Meat"],
                         (bool)rdr["Medicines"], (bool)rdr["Other"], (int)rdr["PetId"]));
                     }
 

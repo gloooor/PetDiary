@@ -30,7 +30,7 @@
                 <Label Content="Report Note about activity" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
 
                 <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Border Grid.Row="3" Background="#DAE2F3" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
+                <Border Grid.Row="3" Background="#505050" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
                     <Grid >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
@@ -50,9 +50,9 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                      
-                        <Label Content="Hours" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox x:Name="txthours" Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3" >
+
+                        <Label Content="Hours" Grid.Row="2" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txthours" Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3" PreviewTextInput="txthours_PreviewTextInput" >
                             <TextBox.Text>
                                 <Binding Path="ReportActivityViewModel.Hours" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -61,8 +61,8 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Minutes" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox x:Name="txtminutes" Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3" >
+                        <Label Content="Minutes" Grid.Row="3" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtminutes" Grid.Row="3" Grid.Column="2"  PreviewTextInput="txthours_PreviewTextInput" Background="#F0F0F0" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3" >
                             <TextBox.Text>
                                 <Binding Path="ReportActivityViewModel.Minutes" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -71,8 +71,8 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Comment" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox x:Name="txtcomment" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="14" BorderBrush="#FFABADB3">
+                        <Label Content="Comment" Grid.Row="4" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtcomment" AcceptsReturn="True" TextWrapping="Wrap"  Grid.Row="4" Grid.RowSpan="2" Grid.Column="2" Background="#F0F0F0" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3">
                             <TextBox.Text>
                                 <Binding Path="ReportActivityViewModel.Comment" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -81,8 +81,8 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Location" Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox x:Name="txtcoment" Grid.Row="1" FontSize="14"  Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
+                        <Label Content="Location" Grid.Row="1" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
+                        <TextBox x:Name="txtcoment" Grid.Row="1" FontSize="12"  Grid.Column="2" Background="#F0F0F0" Foreground="#505050" BorderBrush="#FFABADB3">
                             <TextBox.Text>
                                 <Binding Path="ReportActivityViewModel.Location" Mode="TwoWay" ValidatesOnExceptions="True"  UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -91,7 +91,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Date" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="Date" Grid.Row="6" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
                         <DatePicker SelectedDateFormat="Short" Grid.Column="2" Grid.Row="6" Height="auto">
                             <DatePicker.Text>
                                 <Binding StringFormat='dd/MM/yyyy' Path="ReportActivityViewModel.Date" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -101,14 +101,14 @@
                                 </Binding>
                             </DatePicker.Text>
                         </DatePicker>
-                        <Label Content="Rating" Grid.Row="8" Grid.Column="1"  HorizontalContentAlignment="Left"/>
+                        <Label Content="Rating" Grid.Row="8" Grid.Column="1" Foreground="Wheat" HorizontalContentAlignment="Left"/>
                         <Slider Grid.Row="8" Grid.Column="2" Name="slider" Minimum="0" Maximum="10" Value="{Binding ReportActivityViewModel.Rating, Mode=TwoWay}"></Slider>
                     </Grid>
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.ActPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
 
-                <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#B6E7C5" HorizontalContentAlignment="Center" Foreground="Black" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
-                <Button Grid.Column="2" Grid.Row="6" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#B6E7C5" Foreground="Black"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Margin="20,0,0,0"/>
+                <Button Grid.Column="2" Grid.Row="5" Command="{Binding ActivityNoteViewModel.AddActivityCommand}" Background="#505050" HorizontalContentAlignment="Center" Foreground="Wheat" FontSize="18" Margin="20,0,0,0" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Grid.Row="6" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Background="#505050" Foreground="Wheat"  FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel" Margin="20,0,0,0"/>
             </Grid>
         </Border>
     </Grid>

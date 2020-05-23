@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,25 +13,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PetDiary
+namespace PetDiary.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ReporlActivity.xaml
+    /// Логика взаимодействия для AdminPage.xaml
     /// </summary>
-    public partial class ReporlActivity : Window
+    public partial class AdminPage : Window
     {
-        public ReporlActivity()
+        public AdminPage()
         {
-
-            ViewModel.ReportActivityViewModel.InitNote(true);
             InitializeComponent();
+            ViewModel.UserViewModel.GetUsers();
             DataContext = ApplicationContext.Get();
-        }
-
-        private void txthours_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }

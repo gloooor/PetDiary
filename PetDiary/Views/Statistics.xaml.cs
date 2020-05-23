@@ -33,7 +33,7 @@ namespace PetDiary
             ViewModel.StatViewModel.GetStatistic(ViewModel.MainWindowViewModel.SelectedPet.Id);
             DataContext = ApplicationContext.Get();
 
-            var listik = new ChartValues<int>();
+            var listik = new ChartValues<double>();
             foreach (Stat el in ViewModel.StatViewModel.Statistic)
             {
                 listik.Add(el.Weight);

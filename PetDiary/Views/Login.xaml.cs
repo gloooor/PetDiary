@@ -25,39 +25,20 @@ namespace PetDiary
     public partial class Login : Window
     {
 
-        public UserViewModel UserViewModel { get; set; }
-
-        private readonly UserDB _userDB;
         public Login()
         {
             InitializeComponent();
-            _userDB = new UserDB();
-            UserViewModel = ViewModel.UserViewModel;
+            ViewModel.RegistrationViewModel.InitUser(true);
+            DataContext = ApplicationContext.Get();
         }
 
-        private void butLogin_Click_1(object sender, RoutedEventArgs e)
+        private void pwBoxUser_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            var hash = DB.Hash(txtpassword.Password);
-            var user = UserDB.GetUserByLogin(txtlogin.Text);
-
-            if (user.Password != hash)
-            {
-                MessageBox.Show("невалидный юзер");
-                return;
-            }
-            UserViewModel.User = user;
-            ViewModel.PetViewModel.GetUserPets(ViewModel.UserViewModel.User.Id);
-            var window = new MainWindow();
-            window.Show();
-            this.Close();
-
-        }
-
-        private void butRegister_Click_1(object sender, RoutedEventArgs e)
-        {
-            Registration Menu = new Registration();
-            Menu.Show();
-            this.Close();
+            var pBox = sender as PasswordBox;
+            string blank = pBox.Password;
+            var sMD5 = DB.Hash(blank);
+            blank = "";
+            MD5pw.Text = sMD5;
         }
     }
 }

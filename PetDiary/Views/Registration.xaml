@@ -5,32 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
-        Title="Registration" WindowStyle="None"  AllowsTransparency = "true" Height="300" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
+        Title="Registration" WindowStyle="None"  AllowsTransparency = "true" Height="390" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
-        <Border Background="#FFF" CornerRadius="20" Margin="20,20,20,30">
-            <StackPanel Margin="15,15,15,20">
-                <Label Content="Registration" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  VerticalContentAlignment="Bottom" Height="60"/>
+        <Border Background="#505050" CornerRadius="20" Margin="20,20,20,30">
+            <StackPanel Margin="15,35,15,20">
+                <Label Content="REGISTRATION" FontSize="25" HorizontalAlignment="Center" Foreground="Wheat" HorizontalContentAlignment="Center"  VerticalContentAlignment="Bottom" />
                 <Separator/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Login"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
-                    <TextBox Width="130" x:Name="txtfirstname" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                        <TextBox.Text>
-                            <Binding Path="RegistrationViewModel.Login" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                <Binding.ValidationRules>
-                                    <DataErrorValidationRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </TextBox.Text>
-                    </TextBox>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Password"  Width="70" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
-                    <PasswordBox  Width="130"  x:Name="txtpassword" Background="#FFCE8A8A" Foreground="#C2CAD1" FontSize="18" PasswordChanged="txtpassword_PasswordChanged"/>
-                </StackPanel>
-                <Button Command="{Binding UserViewModel.AddUserCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Height="28" Width="120" Margin="10,10,10,10"/>
-                <Button Command="{Binding RegistrationViewModel.CancelRegistrationCommand}" Background="#FFCE8A8A" Foreground="#FFFFFF" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Width="120" Height="28"/>
+                <Label Content="Enter login"  VerticalContentAlignment="Bottom" HorizontalContentAlignment="Center"   Width="70" Height="28"/>
+                <TextBox  Foreground="Wheat" FontSize="18" BorderBrush="#FFABADB3">
+                    <TextBox.Text>
+                        <Binding Path="RegistrationViewModel.Login" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <DataErrorValidationRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <Label Content="Enter password" Margin="0, 20,0,0" FontFamily="PG Isadora Cyr Pro" HorizontalContentAlignment="Center" VerticalContentAlignment="Bottom" Height="28"/>
+                <PasswordBox AllowDrop="True" PasswordChanged="pwBoxUser2_PasswordChanged"  Foreground="Wheat" FontSize="18" />
+                <TextBox Height="1"  Name="MD6pw" Foreground="Wheat" VerticalAlignment="Top" Text="{Binding RegistrationViewModel.Password, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <Button Command="{Binding UserViewModel.AddUserCommand}" Background="Wheat" Foreground="#505050" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Sign In" Height="28" Width="120" Margin="10,10,10,10"/>
+                <Button Command="{Binding RegistrationViewModel.CancelRegistrationCommand}" Background="Wheat" Foreground="#505050" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"  Width="120" Height="28"/>
             </StackPanel>
         </Border>
-
     </Grid>
 </Window>

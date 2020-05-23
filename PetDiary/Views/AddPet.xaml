@@ -31,7 +31,7 @@
                 <Label Content="Add Pet" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="25" HorizontalAlignment="Center"  HorizontalContentAlignment="Center"  Height="auto"/>
 
                 <Separator  Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                <Border Grid.Row="3" Background="#DAE2F3" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
+                <Border Grid.Row="3" Background="#505050" CornerRadius="10"  Padding="7" Grid.Column="1" Grid.RowSpan="4">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.2*"/>
@@ -51,18 +51,12 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Label HorizontalContentAlignment="Left" Content="Name" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"/>
-                        <TextBox  Grid.Row="1" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
-                            <TextBox.Text>
-                                <Binding Path="AddPetViewModel.Name" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
-                                    <Binding.ValidationRules>
-                                        <DataErrorValidationRule/>
-                                    </Binding.ValidationRules>
-                                </Binding>
-                            </TextBox.Text>
+                        <Label HorizontalContentAlignment="Left" Foreground="Wheat" Content="Name" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Bottom"/>
+                        <TextBox  Grid.Row="1" Grid.Column="2" Background="#F0F0F0" Text="{Binding AddPetViewModel.Name, Mode=TwoWay}" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3" PreviewTextInput="TextBox_PreviewTextInput" >
+           
                         </TextBox>
-                        <Label Content="Breed" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                        <Label Content="Breed" Foreground="Wheat" Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox Grid.Row="2" Grid.Column="2" Background="#F0F0F0" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3"  PreviewTextInput="TextBox_PreviewTextInput">
                             <TextBox.Text>
                                 <Binding Path="AddPetViewModel.Breed" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -71,8 +65,8 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Age" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
-                        <TextBox Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#C2CAD1" FontSize="18" BorderBrush="#FFABADB3">
+                        <Label Content="Age" Foreground="Wheat" Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <TextBox Grid.Row="3" Grid.Column="2" Background="#F0F0F0" Foreground="#505050" FontSize="12" BorderBrush="#FFABADB3" PreviewTextInput="TextBox_PreviewTextInput_1">
                             <TextBox.Text>
                                 <Binding Path="AddPetViewModel.Age" Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
                                     <Binding.ValidationRules>
@@ -81,7 +75,7 @@
                                 </Binding>
                             </TextBox.Text>
                         </TextBox>
-                        <Label Content="Sex" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="Sex" Foreground="Wheat" Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <ComboBox x:Name="sexlist" Grid.Row="4" Grid.Column="2"  Height="auto">
                             <ComboBox.SelectedValue>
                                 <Binding Path="AddPetViewModel.Sex" ValidatesOnDataErrors="True">
@@ -91,13 +85,13 @@
                                 </Binding>
                             </ComboBox.SelectedValue>
                         </ComboBox>
-                        <Label Content="Desexed" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="Desexed" Foreground="Wheat" Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <CheckBox x:Name="desexedcheck" Grid.Row="5" Grid.Column="2" IsChecked="{Binding AddPetViewModel.Desexed}"/>
 
-                        <Label Content="Insured" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="Insured" Foreground="Wheat" Grid.Row="6" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <CheckBox x:Name="insuredcheck" Grid.Row="6" Grid.Column="2" IsChecked="{Binding AddPetViewModel.Insured}" />
 
-                        <Label Content="Type" Grid.Row="7" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="Type" Grid.Row="7" Foreground="Wheat" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <ComboBox x:Name="typelist" Grid.Row="7" Grid.Column="2"  Height="auto">
                             <ComboBox.SelectedValue>
                                 <Binding Path="AddPetViewModel.Type" ValidatesOnDataErrors="True">
@@ -108,7 +102,7 @@
                             </ComboBox.SelectedValue>
                         </ComboBox>
 
-                        <Label Content="DateOfBirth" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Left"/>
+                        <Label Content="DateOfBirth" Foreground="Wheat" Grid.Row="8" Grid.Column="1" HorizontalContentAlignment="Left"/>
                         <DatePicker Grid.Column="2" Grid.Row="8" Height="auto">
                             <DatePicker.Text>
                                 <Binding Path="AddPetViewModel.DateOfBirth" StringFormat='dd/MM/yyyy' Mode="TwoWay" ValidatesOnExceptions="True" UpdateSourceTrigger="PropertyChanged">
@@ -121,8 +115,8 @@
                     </Grid>
                 </Border>
                 <Image  gif:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/images/1.gif" Height="224" Grid.Column="2" Grid.Row="3"/>
-                <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding PetViewModel.AddPetCommand}" Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
-                <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Margin="15,0,0,0" Background="#B6E7C5" Foreground="Black" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"/>
+                <Button Grid.Column="2" Grid.Row="5" x:Name="butsavepet" Command="{Binding PetViewModel.AddPetCommand}" Margin="15,0,0,0" Background="#505050" Foreground="Wheat" FontSize="18" FontFamily="PG Isadora Cyr Pro" Content="Save"/>
+                <Button Grid.Column="2" Grid.Row="6" x:Name="butcancelpet" Command="{Binding MainWindowViewModel.CancelWindowCommand}" Margin="15,0,0,0" Background="#505050" Foreground="Wheat" FontFamily="PG Isadora Cyr Pro" FontSize="18" Content="Cancel"/>
             </Grid>
         </Border>
     </Grid>

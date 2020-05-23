@@ -42,3 +42,7 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\bin\Debug\MaterialDesign
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\PetProfile.g.cs
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\PetProfile.baml
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csprojAssemblyReference.cache
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\AdminPage.g.cs
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\AdminPage.baml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\About.g.cs
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\About.baml

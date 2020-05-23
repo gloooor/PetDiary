@@ -10,16 +10,16 @@ namespace PetDiary
     {
         public int PetId { get; set; }
         public DateTime Date { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
         public Stat()
         {
             this.PetId = 0;
             this.Date = DateTime.Today;
-            this.Weight = 0;
+            this.Weight = 0.0;
         }
 
-        public Stat(DateTime Date, int Weight, int PetId)
+        public Stat(DateTime Date, double Weight, int PetId)
         {
             this.Date = Date;
             this.Weight = Weight;

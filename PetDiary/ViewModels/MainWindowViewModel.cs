@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace PetDiary.ViewModels
@@ -98,6 +99,24 @@ namespace PetDiary.ViewModels
             }
         }
 
+        private RelayCommand _aboutCommand;
+        public RelayCommand AboutCommand {
+            get {
+                return _aboutCommand ??
+                  (_aboutCommand = new RelayCommand(obj =>
+                  {
+                      var win = new About();
+                      win.Show();
+                      foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
+                      {
+                          if (System.Windows.Application.Current.Windows.Count > 1)
+                              window.Close();
+                      }
+
+                  }));
+            }
+        }
+
         private RelayCommand _openAddPetCommand;
         public RelayCommand OpenAddPetCommand {
             get {
@@ -122,6 +141,11 @@ namespace PetDiary.ViewModels
                 return _openReportFeedingCommand ??
                   (_openReportFeedingCommand = new RelayCommand(obj =>
                   {
+                      if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
+                      {
+                          MessageBox.Show("Create some pet");
+                          return;
+                      }
                       var win = new ReportFeeding();
                       win.Show();
                       foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
@@ -140,6 +164,11 @@ namespace PetDiary.ViewModels
                 return _openReportActivityCommand ??
                   (_openReportActivityCommand = new RelayCommand(obj =>
                   {
+                      if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
+                      {
+                          MessageBox.Show("Create some pet");
+                          return;
+                      }
                       var win = new ReporlActivity();
                       win.Show();
                       foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
@@ -158,6 +187,11 @@ namespace PetDiary.ViewModels
                 return _openStatisticCommand ??
                   (_openStatisticCommand = new RelayCommand(obj =>
                   {
+                      if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
+                      {
+                          MessageBox.Show("Create some pet");
+                          return;
+                      }
                       var win = new Statistics();
                       win.Show();
                       foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
@@ -176,6 +210,11 @@ namespace PetDiary.ViewModels
                 return _openProfileCommand ??
                   (_openProfileCommand = new RelayCommand(obj =>
                   {
+                      if (!ViewModel.MainWindowViewModel.FilteredPets.Any())
+                      {
+                          MessageBox.Show("Create some pet");
+                          return;
+                      }
                       var win = new PetProfile();
                       win.Show();
                       foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)

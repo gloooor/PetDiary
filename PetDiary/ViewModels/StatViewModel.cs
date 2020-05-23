@@ -42,7 +42,7 @@ namespace PetDiary.ViewModels
                   (_addStatCommand = new RelayCommand(obj =>
                   {
                       var item = ViewModel.ReportStatViewModel.Stat;
-                      if (item.Weight > 0)
+                      if (item.Weight > 0.0)
                       {
                           StatDB.AddStat(item.Date, item.Weight, ViewModel.MainWindowViewModel.SelectedPet.Id);
                           if (ViewModel.MainWindowViewModel.SelectedPet != null)

@@ -40,7 +40,33 @@ namespace PetDiary.ViewModels
                 return _addPetCommand ??
                   (_addPetCommand = new RelayCommand(obj =>
                   {
+                      
                       var pet = ViewModel.AddPetViewModel.Pet;
+                      if (pet.Name.Length < 3 || pet.Name.Length > 16)
+                      {
+                          MessageBox.Show("The name must be between 3 and 16 characters long");
+                          return;
+                      }
+                      if (pet.Name == "")
+                      {
+                          MessageBox.Show("Enter pet's name");
+                          return;
+                      }
+                      if (pet.Breed == "")
+                      {
+                          MessageBox.Show("Enter pet's breed");
+                          return;
+                      }
+                      if (pet.DateOfBirth == "")
+                      {
+                          MessageBox.Show("Pick the date");
+                          return;
+                      }
+                      if (pet.Age <1 || pet.Age>20)
+                      {
+                          MessageBox.Show("Enter correct age");
+                          return;
+                      }
                       ViewModel.MainWindowViewModel.FilteredPets.Add(pet);
                       Pets.Add(pet);
                       PetDB.AddPet(pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type, ViewModel.UserViewModel.User.Id);
@@ -76,21 +102,38 @@ namespace PetDiary.ViewModels
                   }));
             }
         }
-        private RelayCommand _changePetCommand;
-        public RelayCommand ChangePetCommand => this._changePetCommand ??
-            (this._changePetCommand = new RelayCommand(obj =>
-            {
-                var pet = ViewModel.MainWindowViewModel.SelectedPet;
-                PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
-
-            }
-            ));
 
         private RelayCommand _changePetCancelCommand;
         public RelayCommand ChangePetCancelCommand => this._changePetCancelCommand ??
             (this._changePetCancelCommand = new RelayCommand(obj =>
             {
+
                 var pet = ViewModel.MainWindowViewModel.SelectedPet;
+                if (pet.Name.Length < 3 || pet.Name.Length > 16)
+                {
+                    MessageBox.Show("The name must be between 3 and 16 characters long");
+                    return;
+                }
+                if (pet.Name == "")
+                {
+                    MessageBox.Show("Enter pet's name");
+                    return;
+                }
+                if (pet.Breed == "")
+                {
+                    MessageBox.Show("Enter pet's breed");
+                    return;
+                }
+                if (pet.DateOfBirth == "")
+                {
+                    MessageBox.Show("Pick the date");
+                    return;
+                }
+                if (pet.Age < 1 || pet.Age > 20)
+                {
+                    MessageBox.Show("Enter correct age");
+                    return;
+                }
                 PetDB.UpdatePet(pet.Id, pet.Name, pet.Breed, pet.Age, pet.Sex, pet.DateOfBirth, pet.Insured, pet.Desexed, pet.Type);
 
                 var win = new MainWindow();

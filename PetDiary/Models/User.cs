@@ -15,7 +15,21 @@ namespace PetDiary.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public string IsValid { get; set; }
+        public bool IsAdmin { get; set; }
 
+       public  User( string Login, int Id, string Password, bool IsAdmin)
+        {
+            this.Id = Id;
+            this.Login = Login;
+            this.Password = Password;
+            this.IsAdmin = IsAdmin;
+        }
+        public User()
+        {
+            this.Id = 0;
+            this.Login = "";
+            this.Password ="";
+            this.IsAdmin = false;
+        }
     }
 }

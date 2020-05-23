@@ -8,12 +8,13 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PetDiary.ViewModels
 {
     public class ActivityNoteViewModel : ViewModelBase
     {
-         public ObservableCollection<ActivityNote> ActivityNotes {
+        public ObservableCollection<ActivityNote> ActivityNotes {
             get => _activityNotes;
             set {
                 _activityNotes = value;
@@ -36,7 +37,21 @@ namespace PetDiary.ViewModels
                   (_addActivityNoteCommand = new RelayCommand(obj =>
                   {
                       var note = ViewModel.ReportActivityViewModel.Note;
-
+                      if (note.Location == "")
+                      {
+                          MessageBox.Show("Enter location");
+                          return;
+                      }
+                      if (note.Date == "")
+                      {
+                          MessageBox.Show("Pick the date");
+                          return;
+                      }
+                      if (note.Hours==0 || note.Minutes==0)
+                      {
+                          MessageBox.Show("Enter correct time");
+                          return;
+                      }
                       if (ViewModel.MainWindowViewModel.SelectedPet != null)
                       {
                           ActivityNoteDB.AddNote(note.Date, note.Location, note.Hours, note.Minutes, note.Comment, note.Rating, ViewModel.MainWindowViewModel.SelectedPet.Id);

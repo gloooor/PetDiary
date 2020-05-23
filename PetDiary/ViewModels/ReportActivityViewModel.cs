@@ -23,39 +23,24 @@ namespace PetDiary.ViewModels
             get => this.Note.Date;
             set {
                 InitNote();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    Note.Date = value;
-                    OnPropertyChanged(nameof(this.Date));
-                }
+                Note.Date = value;
+                OnPropertyChanged(nameof(this.Date));
             }
         }
         public string Color {
             get => this.Note.Color;
             set {
                 InitNote();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    Note.Color = value;
-                    OnPropertyChanged(nameof(this.Color));
-                }
+                Note.Color = value;
+                OnPropertyChanged(nameof(this.Color));
             }
         }
         public string Location {
             get => this.Note.Location;
             set {
                 InitNote();
-                if (value == null)
-                    throw new ArgumentException("Выберите имя");
-                else
-                {
-                    Note.Location = value;
-                    OnPropertyChanged(nameof(this.Location));
-                }
+                Note.Location = value;
+                OnPropertyChanged(nameof(this.Location));
             }
         }
 
@@ -63,16 +48,22 @@ namespace PetDiary.ViewModels
             get => this.Note.Hours;
             set {
                 InitNote();
-                Note.Hours = value;
-                OnPropertyChanged(nameof(this.Hours));
+                if (value < 23)
+                {
+                    Note.Hours = value;
+                    OnPropertyChanged(nameof(this.Hours));
+                }
             }
         }
         public int Minutes {
             get => this.Note.Minutes;
             set {
                 InitNote();
-                Note.Minutes = value;
-                OnPropertyChanged(nameof(this.Minutes));
+                if (value < 59)
+                {
+                    Note.Minutes = value;
+                    OnPropertyChanged(nameof(this.Minutes));
+                }
             }
         }
         public int Rating {

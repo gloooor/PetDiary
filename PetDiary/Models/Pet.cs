@@ -27,10 +27,10 @@ namespace PetDiary.Models
         public Pet()
         {
             this.Id = 0;
-            this.Type = "";
+            this.Type = "Cat";
             this.Age = 0;
             this.Name = "";
-            this.Sex = "";
+            this.Sex = "Male";
             this.Desexed = false;
             this.Insured = false;
             this.Breed = "";
