@@ -47,12 +47,12 @@ namespace PetDiary
             {
                 return;
             }
-            var index = petsList.SelectedIndex;
-            if (index >= ViewModel.MainWindowViewModel.FilteredPets.Count || index < 0)
-            {
-                index = 0;
-            }
-            ViewModel.MainWindowViewModel.SelectedPet = ViewModel.MainWindowViewModel.FilteredPets[index];
+            //var index = petsList.SelectedIndex;
+            //if (index >= ViewModel.MainWindowViewModel.FilteredPets.Count || index < 0)
+            //{
+            //    index = 0;
+            //}
+            //ViewModel.MainWindowViewModel.SelectedPet = ViewModel.MainWindowViewModel.FilteredPets[index];
             RefreshNotes();
         }
 

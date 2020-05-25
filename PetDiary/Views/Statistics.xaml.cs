@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Text.RegularExpressions;
 
 namespace PetDiary
 {
@@ -42,7 +43,6 @@ namespace PetDiary
             {
                 new LineSeries
                 {
-
                     Values =  listik
                 }
 
@@ -50,6 +50,12 @@ namespace PetDiary
 
             Labels = new[] { "Jan", "Feb", "Mar", "Apr", "May" };
             YFormatter = value => value.ToString("C");
+        }
+
+private void TextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[0-9]+|^[.]+");
+            e.Handled = !regex.IsMatch(e.Text);
         }
     }
 }

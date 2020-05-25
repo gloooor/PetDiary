@@ -46,3 +46,4 @@ C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\AdminPag
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\AdminPage.baml
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\About.g.cs
 C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\Views\About.baml
+C:\glorichkaProduction\курсачь\PetDiary\PetDiary\obj\Debug\PetDiary.csproj.CoreCompileInputs.cache

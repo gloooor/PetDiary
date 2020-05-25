@@ -8,6 +8,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
+        Icon="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\iconpage.png"
         Title="AddPet" WindowStyle="None"  AllowsTransparency = "true" Height="440" Width="620" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
 
@@ -39,7 +40,7 @@
                 <Image  gif:ImageBehavior.AnimatedSource="{Binding MainWindowViewModel.SelectedPet.StaticPic}" Height="224" Grid.Column="2" Grid.Row="3"/>
                 <StackPanel Grid.Row="5" Margin="100,0,0,0" Grid.Column="1" Orientation="Horizontal">
                     <Label HorizontalContentAlignment="Left" Content="Weight" VerticalContentAlignment="Center" Margin="0,19,0,-0.2"/>
-                    <TextBox  Text="{Binding ReportStatViewModel.Weight, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Width="50" Height="30" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" BorderBrush="#FFABADB3">
+                    <TextBox  Text="{Binding ReportStatViewModel.Weight, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Width="50" Height="30" VerticalAlignment="Bottom" Margin="19,0,0,0" FontSize="14"  Background="#F0F0F0" Foreground="#C2CAD1" PreviewTextInput="TextBox_PreviewTextInput" BorderBrush="#FFABADB3">
                        
                     </TextBox>
                     <Button  Width="70" HorizontalAlignment="Left" Content="Add"  Command="{Binding StatViewModel.AddStatCommand}" Margin="15,21,0,-0.2" Background="#505050"  Foreground="Wheat" FontSize="10" FontFamily="PG Isadora Cyr Pro" Height="Auto" />

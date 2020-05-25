@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
+        Icon="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\iconpage.png"
         Title="Registration" WindowStyle="None"  AllowsTransparency = "true" Height="390" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Grid>
         <Border Background="#505050" CornerRadius="20" Margin="20,20,20,30">

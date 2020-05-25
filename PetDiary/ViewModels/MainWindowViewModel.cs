@@ -239,6 +239,9 @@ namespace PetDiary.ViewModels
                           if (System.Windows.Application.Current.Windows.Count > 1)
                               window.Close();
                       }
+                      ViewModel.ActivityNoteViewModel.ActivityNotes.Clear();
+                      ViewModel.FeedingNoteViewModel.FeedingNotes.Clear();
+                      ViewModel.PetViewModel.Pets.Clear();
 
                   }));
             }

@@ -9,6 +9,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:toolkit="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
         mc:Ignorable="d"
+        Icon="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\iconpage.png"
         Title="MainWindow" Background="Ivory"  MaxHeight="700" MinHeight="700" Height="700" Width="1000" MaxWidth="1500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style TargetType="Button" x:Key="MenuButtons">
@@ -75,7 +76,7 @@
                 </TextBlock>
             </Button>
             <Button Grid.Column="7" Style="{StaticResource AboutButtons}" Command="{Binding  MainWindowViewModel.CloseCommand}">
-                <Image Source="pack://siteoforigin:,,,\images\icon.png" />
+                <Image Source="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\icon.png" />
             </Button>
         </Grid>
 
@@ -108,7 +109,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackPanel>
-            <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="pack://siteoforigin:,,,/images/6.gif" Height="100"/>
+            <Image Grid.Row="2" gif:ImageBehavior.AnimatedSource="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\6.gif" Height="100"/>
             <Button Grid.Row="3" Height="auto" Style="{StaticResource DeleteButtons}" Content="Delete selected pet" Command="{Binding PetViewModel.DeletePetCommand}" Grid.Column="2">
             </Button>
 

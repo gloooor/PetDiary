@@ -6,6 +6,7 @@
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:PetDiary"
         mc:Ignorable="d"
+        Icon="C:\glorichkaProduction\курсачь\PetDiary\PetDiary\iconpage.png"
         Title="Activity" WindowStyle="None"  AllowsTransparency = "true" Height="460" Width="300" Background="Transparent" WindowStartupLocation="CenterScreen">
   
     <Grid>
